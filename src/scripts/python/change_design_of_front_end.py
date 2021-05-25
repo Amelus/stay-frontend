@@ -74,8 +74,8 @@ if __name__ == '__main__':
 
     # get the user input
     try:
-        argv = sys.argv
-        design_nr = int(argv[1])
+        argv: List[str] = sys.argv
+        design_nr: int = int(argv[1])
     except:
         raise Excpetion('Not an int!')
     
@@ -87,8 +87,8 @@ if __name__ == '__main__':
 
     print("design_nr: {}".format(design_nr))
 
-    src_file_path = os.path.join(root_path_project, d_nr_to_file_path[design_nr])
-    dst_file_path = os.path.join(root_path_project, rel_file_path_tab1_scss)
+    src_file_path: str = os.path.join(root_path_project, d_nr_to_file_path[design_nr])
+    dst_file_path: str = os.path.join(root_path_project, rel_file_path_tab1_scss)
 
     print("copy {} -> {}".format(src_file_path, dst_file_path))
     shutil.copy2(src_file_path, dst_file_path)

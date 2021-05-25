@@ -7,17 +7,26 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<!--  <ion-header collapse="condense">-->
+<!--    <ion-toolbar>-->
+<!--      <ion-title size="large">Tab 1</ion-title>-->
+<!--    </ion-toolbar>-->
+<!--  </ion-header>-->
 
-  <div id='main-box'>
-
+  <div style="width: 100%; height: 100%; top: 0%; bottom: 0%; background: #000000;">
+    <div id='main-box'>
+      <div id="element-1" class="button-element" onclick="first_click();">
+        <p class="p-center-h-v">stay in touch</p>
+      </div>
+      <div id="element-2" class="button-element">
+        <p class="p-center-h-v">stay together</p>
+      </div>
+      <div id="element-3" class="button-element">
+        <p class="p-center-h-v">stay with friends</p>
+      </div>
+      <div id="element-4" class="button-element">
+        <p class="p-center-h-v">stay in education</p>
+      </div>
+    </div>
   </div>
-
-  <p>test!</p>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
 </ion-content>
