@@ -77,13 +77,13 @@ if __name__ == '__main__':
         argv: List[str] = sys.argv
         design_nr: int = int(argv[1])
     except:
-        raise Excpetion('Not an int!')
-    
+        raise Exception('Not an int!')
+
     # and check if the design is available
     try:
         assert design_nr in d_nr_to_file_path
     except:
-        raise Excpetion('Wrong design number!')
+        raise Exception('Wrong design number!')
 
     print("design_nr: {}".format(design_nr))
 
