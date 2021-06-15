@@ -1,0 +1,67 @@
+/* design nr. 2 */
+#main-box {
+  background: #800000;
+  width: 50%;
+  height: 60%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#element-stay-in-touch {
+  top: 0%;
+  left: 0%;
+  width: 50%;
+  height: 50%;
+}
+
+#element-2 {
+  top: 0%;
+  left: 50%;
+  width: 50%;
+  height: 50%;
+}
+
+#element-3 {
+  top: 50%;
+  left: 0%;
+  width: 50%;
+  height: 50%;
+}
+
+#element-4 {
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 50%;
+}
+
+.button-element {
+  position: absolute;
+  background: #0a4c72;
+  border: 3px;
+  border-color: #2b9a0c;
+  border-style: solid;
+  margin: 0px;
+  display: table;
+  border-radius: 12px;
+}
+
+.button-element:hover {
+  background: #1f72ac;
+}
+
+.p-center-h-v {
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+  font-size: 20px;
+}
+
+a {
+  color: unset;
+  text-decoration: none;
+}
+
+/*# sourceMappingURL=tab1.page.css.map */

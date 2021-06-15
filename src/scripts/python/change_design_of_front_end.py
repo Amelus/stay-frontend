@@ -14,7 +14,7 @@ import os
 # import pdb
 # import re
 import sys
-# import shutil
+import shutil
 # import traceback
 
 # import numpy as np
@@ -24,15 +24,15 @@ import sys
 # from copy import deepcopy, copy
 # from dotmap import DotMap
 # from functools import reduce
-from memory_tempfile import MemoryTempfile
-# from shutil import copyfile
+#from memory_tempfile import MemoryTempfile
+from shutil import copyfile
 # from pprint import pprint
-# from typing import List, Set, Tuple, Dict, Union
+from typing import List, Set, Tuple, Dict, Union
 # from PIL import Image
 
 PATH_ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 HOME_DIR = os.path.expanduser("~")
-TEMP_DIR = MemoryTempfile().gettempdir()
+#TEMP_DIR = MemoryTempfile().gettempdir()
 
 import importlib.util as imp_util
 
@@ -61,7 +61,7 @@ if __name__ == '__main__':
 
     # check if the files exsists
     # TODO: make it more dynamical later
-    assert os.path.exists(os.path.join(root_path_project, rel_file_path_tab1_scss))
+#    assert os.path.exists(os.path.join(root_path_project, rel_file_path_tab1_scss))
     assert os.path.exists(os.path.join(root_path_project, rel_file_path_tab1_scss_nr_1))
     assert os.path.exists(os.path.join(root_path_project, rel_file_path_tab1_scss_nr_2))
     assert os.path.exists(os.path.join(root_path_project, rel_file_path_tab1_scss_nr_3))
