@@ -1,40 +1,20 @@
-#! /usr/bin/python3.8.6
-
-# #! /usr/bin/env -S /usr/bin/time /usr/bin/python3.8.6 -i
-
-# # ! /usr/bin/env -S /usr/bin/time /usr/bin/python3.9.1-i
+#! /usr/bin/env -S /usr/bin/time /usr/bin/python3.9.5
 
 # -*- coding: utf-8 -*-
 
-# Some other needed imports
-# import datetime
-# import dill
-# import gzip
 import os
-# import pdb
-# import re
 import sys
-# import shutil
-# import traceback
+import shutil
 
-# import numpy as np
-# import pandas as pd
-# import multiprocessing as mp
+import importlib.util as imp_util
 
-# from copy import deepcopy, copy
-# from dotmap import DotMap
-# from functools import reduce
 from memory_tempfile import MemoryTempfile
-# from shutil import copyfile
-# from pprint import pprint
-# from typing import List, Set, Tuple, Dict, Union
-# from PIL import Image
+from shutil import copyfile
+from typing import List, Set, Tuple, Dict, Union
 
 PATH_ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 HOME_DIR = os.path.expanduser("~")
 TEMP_DIR = MemoryTempfile().gettempdir()
-
-import importlib.util as imp_util
 
 # Needed, if you want to import dynamically from a specifically path
 spec = imp_util.spec_from_file_location("utils", os.path.join(PATH_ROOT_DIR, "utils.py"))
