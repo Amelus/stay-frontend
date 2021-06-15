@@ -1,40 +1,20 @@
-#! /usr/bin/python3.8.6
-
-# #! /usr/bin/env -S /usr/bin/time /usr/bin/python3.8.6 -i
-
-# # ! /usr/bin/env -S /usr/bin/time /usr/bin/python3.9.1-i
+#! /usr/bin/env -S /usr/bin/time /usr/bin/python3.9.5
 
 # -*- coding: utf-8 -*-
 
-# Some other needed imports
-# import datetime
-# import dill
-# import gzip
 import os
-# import pdb
-# import re
 import sys
 import shutil
-# import traceback
 
-# import numpy as np
-# import pandas as pd
-# import multiprocessing as mp
+import importlib.util as imp_util
 
-# from copy import deepcopy, copy
-# from dotmap import DotMap
-# from functools import reduce
-#from memory_tempfile import MemoryTempfile
+from memory_tempfile import MemoryTempfile
 from shutil import copyfile
-# from pprint import pprint
 from typing import List, Set, Tuple, Dict, Union
-# from PIL import Image
 
 PATH_ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 HOME_DIR = os.path.expanduser("~")
-#TEMP_DIR = MemoryTempfile().gettempdir()
-
-import importlib.util as imp_util
+TEMP_DIR = MemoryTempfile().gettempdir()
 
 # Needed, if you want to import dynamically from a specifically path
 spec = imp_util.spec_from_file_location("utils", os.path.join(PATH_ROOT_DIR, "utils.py"))
@@ -61,7 +41,7 @@ if __name__ == '__main__':
 
     # check if the files exsists
     # TODO: make it more dynamical later
-#    assert os.path.exists(os.path.join(root_path_project, rel_file_path_tab1_scss))
+    assert os.path.exists(os.path.join(root_path_project, rel_file_path_tab1_scss))
     assert os.path.exists(os.path.join(root_path_project, rel_file_path_tab1_scss_nr_1))
     assert os.path.exists(os.path.join(root_path_project, rel_file_path_tab1_scss_nr_2))
     assert os.path.exists(os.path.join(root_path_project, rel_file_path_tab1_scss_nr_3))
