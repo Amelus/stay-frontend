@@ -1,6 +1,6 @@
-/* design nr. 3 */
+/* design nr. 2 */
 #main-box {
-  background: #000080;
+  background: #800000;
   width: 50%;
   height: 60%;
   position: absolute;
@@ -11,26 +11,30 @@
 
 #element-stay-in-touch {
   top: 0%;
-  width: 100%;
-  height: 25%;
+  left: 0%;
+  width: 50%;
+  height: 50%;
 }
 
 #element-2 {
-  top: 25%;
-  width: 100%;
-  height: 25%;
+  top: 0%;
+  left: 50%;
+  width: 50%;
+  height: 50%;
 }
 
 #element-3 {
   top: 50%;
-  width: 100%;
-  height: 25%;
+  left: 0%;
+  width: 50%;
+  height: 50%;
 }
 
 #element-4 {
-  top: 75%;
-  width: 100%;
-  height: 25%;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 50%;
 }
 
 .button-element {
@@ -41,11 +45,11 @@
   border-style: solid;
   margin: 0px;
   display: table;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
 .button-element:hover {
-  background: #0f6ba0;
+  background: #1f72ac;
 }
 
 .p-center-h-v {
@@ -60,4 +64,4 @@ a {
   text-decoration: none;
 }
 
-/*# sourceMappingURL=tab1.page.css.map */
+/*# sourceMappingURL=tab-home.page.css.map */

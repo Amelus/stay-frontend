@@ -8,13 +8,13 @@ import shutil
 
 import importlib.util as imp_util
 
-from memory_tempfile import MemoryTempfile
+#from memory_tempfile import MemoryTempfile
 from shutil import copyfile
 from typing import List, Set, Tuple, Dict, Union
 
 PATH_ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 HOME_DIR = os.path.expanduser("~")
-TEMP_DIR = MemoryTempfile().gettempdir()
+#TEMP_DIR = MemoryTempfile().gettempdir()
 
 # Needed, if you want to import dynamically from a specifically path
 spec = imp_util.spec_from_file_location("utils", os.path.join(PATH_ROOT_DIR, "utils.py"))
@@ -27,21 +27,21 @@ OBJS_DIR_PATH = PATH_ROOT_DIR+'objs/'
 mkdirs(OBJS_DIR_PATH)
 
 # rel ... relative file path
-rel_file_path_tab1_scss = 'src/app/tab1/tab1.page.scss'
+rel_file_path_tab1_scss = 'src/app/tab-home/tab-home.page.scss'
 
-rel_file_path_tab1_scss_nr_1 = 'themes/design_1/tab1.page.scss'
-rel_file_path_tab1_scss_nr_2 = 'themes/design_2/tab1.page.scss'
-rel_file_path_tab1_scss_nr_3 = 'themes/design_3/tab1.page.scss'
+rel_file_path_tab1_scss_nr_1 = 'themes/design_1/tab-home.page.scss'
+rel_file_path_tab1_scss_nr_2 = 'themes/design_2/tab-home.page.scss'
+rel_file_path_tab1_scss_nr_3 = 'themes/design_3/tab-home.page.scss'
 
 if __name__ == '__main__':
     # get the root project path and check if the name is correct
     root_path_project = '/'.join(PATH_ROOT_DIR.split('/')[:-3])
     project_folder_name = root_path_project.split('/')[-1]
-    assert project_folder_name == 'stay-frontend'
+#    assert project_folder_name == 'stay-frontend'
 
     # check if the files exsists
     # TODO: make it more dynamical later
-    assert os.path.exists(os.path.join(root_path_project, rel_file_path_tab1_scss))
+#    assert os.path.exists(os.path.join(root_path_project, rel_file_path_tab1_scss))
     assert os.path.exists(os.path.join(root_path_project, rel_file_path_tab1_scss_nr_1))
     assert os.path.exists(os.path.join(root_path_project, rel_file_path_tab1_scss_nr_2))
     assert os.path.exists(os.path.join(root_path_project, rel_file_path_tab1_scss_nr_3))
