@@ -32,4 +32,6 @@ npm-debug.log*
 
 /**/__pycache__
 
-src/app/tab1/tab1.page.scss
+*.css
+*.css.map
+/src/app/tab-home/tab-home.page.scss
