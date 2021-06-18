@@ -1,4 +1,4 @@
-import {IAppointmentVm} from './IAppointmentVm';
+import {IAppointmentVm} from './interface/IAppointmentVm';
 
 export class AppointmentVm implements IAppointmentVm {
 

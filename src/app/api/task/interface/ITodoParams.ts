@@ -1,4 +1,4 @@
-import {TodoParamsStatus} from "./TodoParamsStatus";
+import {TodoParamsStatus} from "../TodoParamsStatus";
 
 export interface ITodoParams {
   creator?: string;

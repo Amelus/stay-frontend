@@ -1,8 +1,8 @@
 import {Observable, throwError as _observableThrow} from 'rxjs';
 import {InjectionToken} from '@angular/core';
+import {SwaggerException} from './shared/exception/SwaggerException';
 
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
-import {SwaggerException} from './user/SwaggerException';
 
 function throwException(message: string, status: number, response: string, headers: { [key: string]: any; },
                         result?: any): Observable<any> {

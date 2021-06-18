@@ -1,5 +1,5 @@
-import {UserVmRole} from "./UserVmRole";
-import {UpdateUserStatus} from "./UpdateUserStatus";
+import {UserVmRole} from "../UserVmRole";
+import {UpdateUserStatus} from "../UpdateUserStatus";
 
 export interface IUpdateUserResponseVm {
   imageUrl?: string | null;

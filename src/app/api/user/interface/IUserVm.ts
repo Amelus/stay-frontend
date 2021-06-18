@@ -1,4 +1,4 @@
-import {UserVmRole} from './UserVmRole';
+import {UserVmRole} from '../UserVmRole';
 
 export interface IUserVm {
   createdAt?: Date | null;

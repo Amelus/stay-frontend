@@ -3,21 +3,16 @@ import {Observable, of as _observableOf, throwError as _observableThrow} from 'r
 import {Inject, Injectable, Optional} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpResponse, HttpResponseBase} from '@angular/common/http';
 
-import {AppointmentParams} from "./AppointmentParams";
-import {AppointmentVm} from "./AppointmentVm";
+import {ApiException} from "../shared/exception/ApiException";
+import {TodoParams} from "./TodoParams";
+import {TodoVm} from "./TodoVm";
 
-import {ApiException} from "./ApiException";
-
-import {
-  API_BASE_URL,
-  blobToText,
-  throwException,
-} from '../api';
+import {API_BASE_URL, blobToText, throwException,} from '../api';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AppointmentClient {
+export class TodoClient {
   private http: HttpClient;
   private baseUrl: string;
   protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
@@ -27,11 +22,11 @@ export class AppointmentClient {
     this.baseUrl = baseUrl ? baseUrl : 'http://localhost:8080/api';
   }
 
-  create(appointmentParams: AppointmentParams): Observable<AppointmentVm> {
-    let url = this.baseUrl + '/appointment';
+  create(todoParams: TodoParams): Observable<TodoVm> {
+    let url = this.baseUrl + '/todos';
     url = url.replace(/[?&]$/, '');
 
-    const content = JSON.stringify(appointmentParams);
+    const content = JSON.stringify(todoParams);
 
     const options: any = {
       body: content,
@@ -50,15 +45,15 @@ export class AppointmentClient {
         try {
           return this.processCreate(response as any);
         } catch (e) {
-          return _observableThrow(e) as any as Observable<AppointmentVm>;
+          return _observableThrow(e) as any as Observable<TodoVm>;
         }
       } else {
-        return _observableThrow(response) as any as Observable<AppointmentVm>;
+        return _observableThrow(response) as any as Observable<TodoVm>;
       }
     }));
   }
 
-  protected processCreate(response: HttpResponseBase): Observable<AppointmentVm> {
+  protected processCreate(response: HttpResponseBase): Observable<TodoVm> {
     const status = response.status;
     const responseBlob =
       response instanceof HttpResponse ? response.body :
@@ -75,7 +70,7 @@ export class AppointmentClient {
       return blobToText(responseBlob).pipe(_observableMergeMap(responseText => {
         let result201: any = null;
         const resultData201 = responseText === '' ? null : JSON.parse(responseText, this.jsonParseReviver);
-        result201 = resultData201 ? AppointmentVm.fromJS(resultData201) : new AppointmentVm();
+        result201 = resultData201 ? TodoVm.fromJS(resultData201) : new TodoVm();
         return _observableOf(result201);
       }));
     } else if (status === 400) {
@@ -90,11 +85,11 @@ export class AppointmentClient {
         return throwException('An unexpected server error occurred.', status, responseText, headers);
       }));
     }
-    return _observableOf<AppointmentVm>(null as any);
+    return _observableOf<TodoVm>(null as any);
   }
 
-  getAll(): Observable<AppointmentVm[]> {
-    let url = this.baseUrl + '/appointment';
+  getAssigned(): Observable<TodoVm[]> {
+    let url = this.baseUrl + '/todos/assigned';
 
     url = url.replace(/[?&]$/, '');
 
@@ -113,16 +108,43 @@ export class AppointmentClient {
         try {
           return this.processGetall(response as any);
         } catch (e) {
-          return _observableThrow(e) as any as Observable<AppointmentVm[]>;
+          return _observableThrow(e) as any as Observable<TodoVm[]>;
         }
       } else {
-        return _observableThrow(response) as any as Observable<AppointmentVm[]>;
+        return _observableThrow(response) as any as Observable<TodoVm[]>;
       }
     }));
   }
 
+  getCreated(): Observable<TodoVm[]> {
+    let url = this.baseUrl + '/todos/created';
 
-  protected processGetall(response: HttpResponseBase): Observable<AppointmentVm[]> {
+    url = url.replace(/[?&]$/, '');
+
+    const options: any = {
+      observe: 'response',
+      responseType: 'blob',
+      headers: new HttpHeaders({
+        Accept: 'application/json'
+      })
+    };
+
+    return this.http.request('get', url, options).pipe(_observableMergeMap((response: any) => {
+      return this.processGetall(response);
+    })).pipe(_observableCatch((response: any) => {
+      if (response instanceof HttpResponseBase) {
+        try {
+          return this.processGetall(response as any);
+        } catch (e) {
+          return _observableThrow(e) as any as Observable<TodoVm[]>;
+        }
+      } else {
+        return _observableThrow(response) as any as Observable<TodoVm[]>;
+      }
+    }));
+  }
+
+  protected processGetall(response: HttpResponseBase): Observable<TodoVm[]> {
     const status = response.status;
     const responseBlob =
       response instanceof HttpResponse ? response.body :
@@ -142,7 +164,7 @@ export class AppointmentClient {
         if (resultData200 && resultData200.constructor === Array) {
           result200 = [];
           for (const item of resultData200) {
-            result200.push(AppointmentVm.fromJS(item));
+            result200.push(TodoVm.fromJS(item));
           }
         }
         return _observableOf(result200);
@@ -159,14 +181,14 @@ export class AppointmentClient {
         return throwException('An unexpected server error occurred.', status, responseText, headers);
       }));
     }
-    return _observableOf<AppointmentVm[]>(null as any);
+    return _observableOf<TodoVm[]>(null as any);
   }
 
-  update(appointmentVm: AppointmentVm): Observable<AppointmentVm> {
-    let url = this.baseUrl + '/appointment';
+  update(todoVm: TodoVm): Observable<TodoVm> {
+    let url = this.baseUrl + '/todos';
     url = url.replace(/[?&]$/, '');
 
-    const content = JSON.stringify(appointmentVm);
+    const content = JSON.stringify(todoVm);
 
     const options: any = {
       body: content,
@@ -185,15 +207,15 @@ export class AppointmentClient {
         try {
           return this.processUpdate(response as any);
         } catch (e) {
-          return _observableThrow(e) as any as Observable<AppointmentVm>;
+          return _observableThrow(e) as any as Observable<TodoVm>;
         }
       } else {
-        return _observableThrow(response) as any as Observable<AppointmentVm>;
+        return _observableThrow(response) as any as Observable<TodoVm>;
       }
     }));
   }
 
-  protected processUpdate(response: HttpResponseBase): Observable<AppointmentVm> {
+  protected processUpdate(response: HttpResponseBase): Observable<TodoVm> {
     const status = response.status;
     const responseBlob =
       response instanceof HttpResponse ? response.body :
@@ -210,7 +232,7 @@ export class AppointmentClient {
       return blobToText(responseBlob).pipe(_observableMergeMap(responseText => {
         let result200: any = null;
         const resultData200 = responseText === '' ? null : JSON.parse(responseText, this.jsonParseReviver);
-        result200 = resultData200 ? AppointmentVm.fromJS(resultData200) : new AppointmentVm();
+        result200 = resultData200 ? TodoVm.fromJS(resultData200) : new TodoVm();
         return _observableOf(result200);
       }));
     } else if (status === 400) {
@@ -225,19 +247,19 @@ export class AppointmentClient {
         return throwException('An unexpected server error occurred.', status, responseText, headers);
       }));
     }
-    return _observableOf<AppointmentVm>(null as any);
+    return _observableOf<TodoVm>(null as any);
   }
 
-  delete(id: string): Observable<AppointmentVm> {
-    let url = this.baseUrl + '/appointment/delete';
+  delete(ids: string[]): Observable<TodoVm> {
+    let url = this.baseUrl + '/todos/delete';
 
-    if (id === undefined || id === null) {
-      throw new Error('The parameter \'id\' must be defined.');
+    if (ids === undefined || ids === null || ids.length <= 0) {
+      throw new Error('The parameter \'ids\' must be defined.');
     }
     url = url.replace(/[?&]$/, '');
 
     const options: any = {
-      body: id,
+      body: ids,
       observe: 'response',
       responseType: 'blob',
       headers: new HttpHeaders({
@@ -252,15 +274,15 @@ export class AppointmentClient {
         try {
           return this.processDelete(response as any);
         } catch (e) {
-          return _observableThrow(e) as any as Observable<AppointmentVm>;
+          return _observableThrow(e) as any as Observable<TodoVm>;
         }
       } else {
-        return _observableThrow(response) as any as Observable<AppointmentVm>;
+        return _observableThrow(response) as any as Observable<TodoVm>;
       }
     }));
   }
 
-  protected processDelete(response: HttpResponseBase): Observable<AppointmentVm> {
+  protected processDelete(response: HttpResponseBase): Observable<TodoVm> {
     return this.processUpdate(response);
   }
 }

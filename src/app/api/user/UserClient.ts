@@ -5,16 +5,17 @@ import {mergeMap as _observableMergeMap} from "rxjs/operators";
 import {catchError as _observableCatch} from "rxjs/internal/operators/catchError";
 import {throwError as _observableThrow} from "rxjs/internal/observable/throwError";
 
-import {ApiException} from './ApiException';
-import {LoginResponseVm} from './LoginResponseVm';
-import {LoginVm} from './LoginVm';
-import {RegisterVm} from './RegisterVm';
+import {ApiException} from '../shared/exception/ApiException';
+import {LoginResponseVm} from '../login/LoginResponseVm';
+import {LoginVm} from '../login/LoginVm';
+import {RegisterVm} from '../register/RegisterVm';
 import {UpdateUserResponseVm} from './UpdateUserResponseVm';
 import {UpdateUserVm} from './UpdateUserVm';
 import {UserVm} from './UserVm';
 
 import {API_BASE_URL, blobToText, throwException} from '../api';
 
+// TODO replace momentJS with daysJS
 import * as moment from 'moment';
 
 @Injectable({

@@ -1,4 +1,4 @@
-import {UserVm} from "./UserVm";
+import {UserVm} from "../../user/UserVm";
 
 export interface ILoginResponseVm {
   token: string;

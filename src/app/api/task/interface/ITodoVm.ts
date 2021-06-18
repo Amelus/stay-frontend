@@ -1,4 +1,4 @@
-import {TodoVmStatus} from "./TodoVmStatus";
+import {TodoVmStatus} from "../TodoVmStatus";
 
 export interface ITodoVm {
   createdAt?: Date | null;

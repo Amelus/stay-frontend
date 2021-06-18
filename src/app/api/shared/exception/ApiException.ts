@@ -1,4 +1,4 @@
-import {IApiException} from "./IApiException";
+import {IApiException} from "./interface/IApiException";
 
 export class ApiException implements IApiException {
 

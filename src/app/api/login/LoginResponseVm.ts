@@ -1,5 +1,5 @@
-import {UserVm} from "./UserVm";
-import {ILoginResponseVm} from "./ILoginResponseVm";
+import {UserVm} from "../user/UserVm";
+import {ILoginResponseVm} from "./interface/ILoginResponseVm";
 
 export class LoginResponseVm implements ILoginResponseVm {
 

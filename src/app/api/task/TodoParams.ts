@@ -1,4 +1,4 @@
-import {ITodoParams} from "./ITodoParams";
+import {ITodoParams} from "./interface/ITodoParams";
 import {TodoParamsStatus} from "./TodoParamsStatus";
 
 export class TodoParams implements ITodoParams {

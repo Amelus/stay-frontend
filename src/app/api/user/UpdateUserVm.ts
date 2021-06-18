@@ -1,4 +1,4 @@
-import {IUpdateUserVm} from "./IUpdateUserVm";
+import {IUpdateUserVm} from "./interface/IUpdateUserVm";
 
 export class UpdateUserVm implements IUpdateUserVm {
 

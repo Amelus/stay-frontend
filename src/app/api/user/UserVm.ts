@@ -1,4 +1,4 @@
-import {IUserVm} from "./IUserVm";
+import {IUserVm} from "./interface/IUserVm";
 import {UserVmRole} from "./UserVmRole";
 
 export class UserVm implements IUserVm {

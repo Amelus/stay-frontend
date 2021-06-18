@@ -1,5 +1,5 @@
-import {IUpdateUserResponseVm} from "./IUpdateUserResponseVm";
-import {IUpdateUserVm} from "./IUpdateUserVm";
+import {IUpdateUserResponseVm} from "./interface/IUpdateUserResponseVm";
+import {IUpdateUserVm} from "./interface/IUpdateUserVm";
 import {UserVmRole} from "./UserVmRole";
 import {UpdateUserStatus} from "./UpdateUserStatus";
 

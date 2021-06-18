@@ -1,5 +1,5 @@
 import * as moment from "moment";
-import {IAppointmentParams} from "./IAppointmentParams";
+import {IAppointmentParams} from "./interface/IAppointmentParams";
 
 export class AppointmentParams implements IAppointmentParams {
 
@@ -62,6 +62,7 @@ export class AppointmentParams implements IAppointmentParams {
     return data;
   }
 
+  // TODO replace momentJS with daysJS
   private setTimes(data: any) {
     if (this.start !== undefined && this.end !== undefined) {
       const startDate = moment(this.start);

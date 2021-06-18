@@ -1,5 +1,5 @@
 import {TodoVmStatus} from "./TodoVmStatus";
-import {ITodoVm} from "./ITodoVm";
+import {ITodoVm} from "./interface/ITodoVm";
 
 export class TodoVm implements ITodoVm {
 

@@ -3,11 +3,7 @@ import {Observable, of as _observableOf, throwError as _observableThrow} from 'r
 import {Inject, Injectable, Optional} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpResponse, HttpResponseBase} from '@angular/common/http';
 
-import {
-  API_BASE_URL,
-  blobToText,
-  throwException,
-} from '../api';
+import {API_BASE_URL, blobToText, throwException,} from '../api';
 
 @Injectable({
   providedIn: 'root'
