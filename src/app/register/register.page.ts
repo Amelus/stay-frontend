@@ -13,7 +13,8 @@ export class RegisterPage implements OnInit {
   form: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit() {
     this.initForm();
@@ -22,24 +23,42 @@ export class RegisterPage implements OnInit {
 
   private initForm() {
     this.form = this.formBuilder.group({
-      registrationCode: ['', [Validators.required, Validators.minLength(6)]],
-      username: ['', [Validators.required, Validators.minLength(4), this.smallCharsValidator()]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      firstName: ['', [Validators.required, this.charsValidator()]],
-      lastName: ['', [Validators.required, this.charsValidator()]],
-    });
+        email: ['', [Validators.required, this.emailValidator()]],
+        password: ['', [Validators.required, Validators.minLength(8)]],
+        passwordRepeat: ['', [Validators.required]],
+        firstName: ['', [this.charsValidator()]],
+        lastName: ['', [this.charsValidator()]],
+      },
+      {
+        validator: this.ConfirmPasswordValidator("password", "passwordRepeat"),
+      });
   }
 
-  private smallCharsValidator(): ValidatorFn {
-    return (control: AbstractControl): {[key: string]: any} | null => {
-      const smallChars: RegExp = new RegExp('^[a-z0-9_\\-]+$');
-      const valid = smallChars.test(control.value);
-      return valid ? null : {smallCharactersOnly: {value: control.value}};
+  private ConfirmPasswordValidator(password: string, passwordRepeat: string) {
+    return (group: FormGroup) => {
+      let control = group.controls[password];
+      let matchingControl = group.controls[passwordRepeat]
+      if ( matchingControl.errors && !matchingControl.errors.confirmPasswordValidator) {
+        return;
+      }
+      if (control.value !== matchingControl.value) {
+        matchingControl.setErrors({ confirmPasswordValidator: true });
+      } else {
+        matchingControl.setErrors(null);
+      }
+    };
+  }
+
+  private emailValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const emailRegex: RegExp = new RegExp('[^@ \\t\\r\\n]+@[^@ \\t\\r\\n]+\\.[^@ \\t\\r\\n]+');
+      const valid = emailRegex.test(control.value);
+      return valid ? null : {emailValid: {value: control.value}};
     };
   }
 
   private charsValidator(): ValidatorFn {
-    return (control: AbstractControl): {[key: string]: any} | null => {
+    return (control: AbstractControl): { [key: string]: any } | null => {
       const smallChars: RegExp = new RegExp('^[a-zA-ZÀ-ž\\-]+$');
       const valid = smallChars.test(control.value);
       return valid ? null : {charactersOnly: {value: control.value}};
@@ -62,5 +81,9 @@ export class RegisterPage implements OnInit {
       this.form.controls[key].markAsDirty();
       this.form.controls[key].updateValueAndValidity();
     });
+  }
+
+  private passwordMatching() {
+    return undefined;
   }
 }
