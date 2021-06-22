@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-title class="ion-text-center">Registrierung</ion-title>
+    <ion-back-button slot="start">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-back-button>
   </ion-toolbar>
 </ion-header>
 
@@ -84,6 +87,16 @@
               </div>
             </ng-container>
           </ion-item>
+        </div>
+        <div class="main-button">
+            <ion-button class="ios ion-align-items-center log-button" expand="block" type="submit">
+              Registrieren
+            </ion-button>
+        </div>
+        <div class="main-button">
+          <ion-button class="ios ion-align-items-center log-button" expand="block" fill="clear" [routerLink]="['/login']">
+            Einloggen
+          </ion-button>
         </div>
       </form>
     </div>
