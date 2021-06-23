@@ -25,8 +25,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.initForm();
-    // this.userClient.logout();
-    alert('Init is working!');
+    this.userClient.logout();
   }
 
   onSubmit() {

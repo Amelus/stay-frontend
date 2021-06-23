@@ -1,72 +1,61 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Login</ion-title>
+    <ion-back-button slot="start">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-back-button>
   </ion-toolbar>
 </ion-header>
 
-<!--<ion-content>-->
-
-<!--</ion-content>-->
-
-<!--<ion-header>-->
-<!--  <ion-toolbar>-->
-<!--    <ion-title class="ion-text-center">MyZone</ion-title>-->
-<!--  </ion-toolbar>-->
-<!--</ion-header>-->
-
 <ion-content class="ion-align-items-center ion-padding">
-<!--  <ion-title class="ion-text-center">Login</ion-title>-->
-<!--  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="general_form">-->
-<!--    <ion-row class="ion-padding ios ion-align-items-center item-label item-label-stacked item ion-focusable ion-untouched ion-pristine ion-invalid hydrated item-interactive item-input">-->
-<!--      <div class="item-native it-nat">-->
-<!--        <div class="item-inner">-->
-<!--          <div class="input-wrapper">-->
-<!--            <slot>-->
-<!--              <ion-label position="stacked">Username</ion-label>-->
-<!--              <ion-input class="input" autocomplete="true" required="true" formControlName="username"></ion-input>-->
-<!--              <ng-container *ngIf="form.get('username').dirty && form.get('username').errors">-->
-<!--                <div class="error">-->
-<!--                  <ng-container *ngIf="form.get('username').hasError('required')">-->
-<!--                    Username ist ein Pflichtfeld-->
-<!--                  </ng-container>-->
-<!--                  <ng-container *ngIf="form.get('username').hasError('minlength')">-->
-<!--                    Der Username ist mindestens 6 Zeichen lang-->
-<!--                  </ng-container>-->
-<!--                </div>-->
-<!--              </ng-container>-->
-<!--            </slot>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </ion-row>-->
+  <form id="form-outer-div" [formGroup]="form" (ngSubmit)="onSubmit()" class="general_form">
+    <ion-row class="ion-padding ios ion-align-items-center item-label item-label-stacked item ion-focusable ion-untouched ion-pristine ion-invalid hydrated item-interactive item-input row-style">
+      <div class="input-wrapper">
+          <ion-label position="stacked">Username</ion-label>
+          <ion-input id="input-username" class="default-field input" autocomplete="true" required="true" formControlName="username"></ion-input>
+          <ng-container *ngIf="form.get('username').dirty && form.get('username').errors; else noErrorUsername">
+            <div class="error-input-value size-input-info">
+              <div *ngIf="form.get('username').hasError('required')">
+                Username ist ein Pflichtfeld
+              </div>
+              <div *ngIf="form.get('username').hasError('minlength')">
+                Der Username ist mindestens 6 Zeichen lang
+              </div>
+            </div>
+          </ng-container>
+          <ng-template #noErrorUsername>
+            <div class="valid-input-value size-input-info">
+              No username errors so far!
+            </div>
+          </ng-template>
+      </div>
+    </ion-row>
 
-<!--    <ion-row class="ion-padding ios ion-align-items-center item-label item-label-stacked item ion-focusable ion-untouched ion-pristine ion-invalid hydrated item-interactive item-input">-->
-<!--      <div class="item-native it-nat">-->
-<!--        <div class="item-inner">-->
-<!--          <div class="input-wrapper">-->
-<!--            <slot>-->
-<!--              <ion-label position="stacked">Password</ion-label>-->
-<!--              <ion-input class="input" autocomplete="true" required="true" type="password" formControlName="password"></ion-input>-->
-<!--              <ng-container *ngIf="form.get('password').dirty && form.get('password').errors">-->
-<!--                <div class="error">-->
-<!--                  <ng-container *ngIf="form.get('password').hasError('required')">-->
-<!--                    Passwort ist ein Pflichtfeld-->
-<!--                  </ng-container>-->
-<!--                  <ng-container *ngIf="form.get('password').hasError('minlength')">-->
-<!--                    Das Passwort ist mindestens 8 Zeichen lang-->
-<!--                  </ng-container>-->
-<!--                </div>-->
-<!--              </ng-container>-->
-<!--            </slot>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </ion-row>-->
+    <ion-row class="ion-padding ios ion-align-items-center item-label item-label-stacked item ion-focusable ion-untouched ion-pristine ion-invalid hydrated item-interactive item-input row-style">
+      <div class="input-wrapper">
+          <ion-label position="stacked">Password</ion-label>
+          <ion-input id="input-password" class="default-field input" autocomplete="true" required="true" type="password" formControlName="password"></ion-input>
+          <ng-container *ngIf="form.get('password').dirty && form.get('password').errors; else noErrorPassword">
+            <div class="error-input-value size-input-info">
+              <div *ngIf="form.get('password').hasError('required')">
+                Passwort ist ein Pflichtfeld
+              </div>
+              <div *ngIf="form.get('password').hasError('minlength')">
+                Das Passwort ist mindestens 8 Zeichen lang
+              </div>
+            </div>
+          </ng-container>
+          <ng-template #noErrorPassword>
+            <div class="valid-input-value size-input-info">
+              No password errors so far!
+            </div>
+          </ng-template>
+      </div>
+    </ion-row>
 
-<!--    <ion-button class="ios ion-align-items-center log-button" expand="block" type="submit">Anmelden</ion-button>-->
-<!--    <ion-button class="ios ion-align-items-center log-button" fill="clear"-->
-<!--                [routerLink]="['/register']" expand="full">Registrieren-->
-<!--    </ion-button>-->
-<!--  </form>-->
+    <ion-button id="login-in-button" class="ios ion-align-items-center log-button" expand="block" type="submit">Anmelden</ion-button>
+    <ion-button id="register-button" class="ios ion-align-items-center log-button button-style" expand="block" type="submit"
+                [routerLink]="['/register']">Registrieren
+    </ion-button>
+  </form>
 </ion-content>
-
