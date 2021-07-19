@@ -1,0 +1,27 @@
+.form-outer {
+  padding: 50px;
+  overflow: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.error {
+  color: red;
+  font-size: small;
+  padding-bottom: 10px;
+}
+
+@media only screen and (min-width: 410px) {
+  .form-inner {
+    width: 360px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .form-inner {
+    width: 700px;
+  }
+}
+
+
