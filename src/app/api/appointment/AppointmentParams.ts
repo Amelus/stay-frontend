@@ -1,4 +1,4 @@
-import * as moment from "moment";
+import * as dayjs from "dayjs";
 import {IAppointmentParams} from "./interface/IAppointmentParams";
 
 export class AppointmentParams implements IAppointmentParams {
@@ -62,24 +62,24 @@ export class AppointmentParams implements IAppointmentParams {
     return data;
   }
 
-  // TODO replace momentJS with daysJS
+  // TODO replace dayjsJS with daysJS
   private setTimes(data: any) {
     if (this.start !== undefined && this.end !== undefined) {
-      const startDate = moment(this.start);
-      let dateComponent = startDate.utc().format('YYYY-MM-DD');
+      const startDate = dayjs(this.start);
+      let dateComponent = startDate.format('YYYY-MM-DD');
 
-      const endDate = moment(this.end);
-      let dateEndComponent = endDate.utc().format('YYYY-MM-DD');
+      const endDate = dayjs(this.end);
+      let dateEndComponent = endDate.format('YYYY-MM-DD');
 
       let timeComponent = '';
       let timeEndComponent = '';
 
       if (this.startTime !== undefined && this.endTime !== undefined) {
-        const timeStart = moment(this.startTime);
-        timeComponent = timeStart.utc().format('HH:mm:ss');
+        const timeStart = dayjs(this.startTime);
+        timeComponent = timeStart.format('HH:mm:ss');
 
-        const timeEnd = moment(this.endTime);
-        timeEndComponent = timeEnd.utc().format('HH:mm:ss');
+        const timeEnd = dayjs(this.endTime);
+        timeEndComponent = timeEnd.format('HH:mm:ss');
       }
 
       if (this.daysOfWeek === undefined || this.daysOfWeek.length <= 0) {

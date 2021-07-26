@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Stay informed</ion-title>
+    <ion-back-button slot="start">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-back-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="content-outer">
+    <div class="content-inner">
+      <ion-card [routerLink]="['/register']">
+        <img src="assets/rolf-sample.jpg"/>
+        <ion-card-header>
+          <ion-card-subtitle>Die Person</ion-card-subtitle>
+          <ion-card-title>Rolf Kipp</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Rolf Kipp ist bereits seit über 25 Jahren in seiner Branche tätig.
+          Mittlerweile rangiert er dort in den Top 5 der umsatzstärksten Unternehmer weltweit
+          und hat sich ein Vertriebssystem aufgebaut das 2.2 Millionen Vertriebspartner umfasst.
+        </ion-card-content>
+      </ion-card>
+      <ion-card [routerLink]="['/register']">
+        <img src="assets/rolf-sample-2.jpg"/>
+        <ion-card-header>
+          <ion-card-subtitle>Erfolg</ion-card-subtitle>
+          <ion-card-title>Aufbau eines neuen Geschäfts</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Erfahre wie du haupt- oder nebenberuflich ein ethisch & krisensicheres Geschäft aufbaust,
+          welches funktioniert, auch wenn man sich zur Ruhe setzt.
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

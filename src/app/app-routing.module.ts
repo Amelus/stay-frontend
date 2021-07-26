@@ -1,3 +1,4 @@
+// @ts-ignore
 import {NgModule} from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 
@@ -17,7 +18,17 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'stay-informed',
+    loadChildren: () => import('./stay-informed/stay-informed.module').then( m => m.StayInformedPageModule)
+  },
+  {
+    path: 'appointment-selection',
+    loadChildren: () => import('./appointment/appointment-selection/appointment-selection.module').then( m => m.AppointmentSelectionPageModule)
   }
+
+
 
 ];
 @NgModule({

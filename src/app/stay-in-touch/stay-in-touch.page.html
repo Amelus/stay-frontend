@@ -4,12 +4,36 @@
     <ion-back-button slot="start">
       <ion-icon name="arrow-back-outline"></ion-icon>
     </ion-back-button>
-    <ion-button slot="end" [routerLink]="['/register']">
-      <ion-icon name="key"></ion-icon>
-    </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div class="content-outer">
+    <div class="content-inner">
+      <ion-grid>
+        <ion-row>
+          <ion-col class="button-element">
+            <ion-button (click)="getF2FAppointment()">
+              Erstgespräch vereinbaren
+            </ion-button>
+          </ion-col>
+          <ion-col class="button-element">
+            <ion-button (click)="getWebinarAppointment()">
+              Anmeldung zum Webinar
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col></ion-col>
+          <ion-col class="button-element">
+            <ion-button>
+              Privatnachricht senden
+            </ion-button>
+          </ion-col>
+          <ion-col></ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
 
 </ion-content>

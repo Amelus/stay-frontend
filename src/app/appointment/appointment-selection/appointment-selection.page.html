@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Termin wählen</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <ionic-calendar-date-picker [validDates]="validDates"
+                                [backgroundStyle]="{ 'background-color': '#000000' }"
+                                (onSelect)="dateSelected($event)">
+
+    </ionic-calendar-date-picker>
+  </div>
+  <div>
+    <ion-button (click)="dismiss()">Abbrechen</ion-button>
+  </div>
+</ion-content>

@@ -1,3 +1,4 @@
+// @ts-ignore
 import {Inject, Injectable, Optional} from "@angular/core";
 import {HttpClient, HttpHeaders, HttpResponse, HttpResponseBase} from "@angular/common/http";
 import {Observable, of as _observableOf, Subscription} from "rxjs";
@@ -14,9 +15,8 @@ import {UpdateUserVm} from './UpdateUserVm';
 import {UserVm} from './UserVm';
 
 import {API_BASE_URL, blobToText, throwException} from '../api';
-
-// TODO replace momentJS with daysJS
-import * as moment from 'moment';
+import * as dayjs from 'dayjs'
+import {UserVmRole} from "./UserVmRole";
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +33,7 @@ export class UserClient {
   protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
   private static setSession(loginResponseVm: LoginResponseVm) {
-    const expiresAt = moment().add(loginResponseVm.expiresIn, 'second');
+    const expiresAt = dayjs().add(Number(loginResponseVm.expiresIn), 'second');
 
     localStorage.setItem('id_token', loginResponseVm.token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
@@ -42,7 +42,24 @@ export class UserClient {
 
   getSessionUser(): UserVm {
     const parsedUser = JSON.parse(localStorage.getItem('user'));
-    return UserVm.fromJS(parsedUser);
+    if (parsedUser !== null) {
+      return UserVm.fromJS(parsedUser);
+    }
+    return null;
+  }
+
+  setSessionUserTest(loginVm: LoginVm) {
+    const expiresAt = dayjs().add(Number(999999999999999), 'second');
+    localStorage.setItem('id_token', "testtoken");
+    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+
+    let user: UserVm = new UserVm();
+    user.username = loginVm.username;
+    user.role = UserVmRole.User;
+    user.firstName = 'Max';
+    user.lastName = 'Mustermann';
+
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
   updateSessionUserImage(imageUrl: string) {
@@ -394,7 +411,7 @@ export class UserClient {
   }
 
   public isLoggedIn() {
-    return moment().isBefore(this.getTokenExpiration());
+    return dayjs().isBefore(this.getTokenExpiration());
   }
 
   isLoggedOut() {
@@ -404,6 +421,6 @@ export class UserClient {
   getTokenExpiration() {
     const expiration = localStorage.getItem('expires_at');
     const expiresAt = JSON.parse(expiration);
-    return moment(expiresAt);
+    return dayjs(expiresAt);
   }
 }

@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+// @ts-ignore
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
-import { StayInTouchPage } from './stay-in-touch.page';
+import {StayInTouchPage} from './stay-in-touch.page';
 
 const routes: Routes = [
   {

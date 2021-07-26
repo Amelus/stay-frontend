@@ -1,3 +1,4 @@
+// @ts-ignore
 import {Component} from '@angular/core';
 
 @Component({
