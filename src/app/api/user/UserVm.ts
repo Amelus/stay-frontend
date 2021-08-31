@@ -22,6 +22,7 @@ export class UserVm implements IUserVm {
   fullName?: string | null;
   role?: UserVmRole | null;
   imageUrl?: string | null;
+  activated?: boolean | false;
 
   static fromJS(data: any): UserVm {
     data = typeof data === 'object' ? data : {};
@@ -41,6 +42,7 @@ export class UserVm implements IUserVm {
       this.fullName = data.fullName !== undefined ? data.fullName : null as any;
       this.role = data.role !== undefined ? data.role : null as any;
       this.imageUrl = data.imageUrl !== undefined ? data.imageUrl : null as any;
+      this.activated = data.activated !== undefined ? data.activated : false;
     }
   }
 
@@ -55,6 +57,7 @@ export class UserVm implements IUserVm {
     data.fullName = this.fullName !== undefined ? this.fullName : null as any;
     data.role = this.role !== undefined ? this.role : null as any;
     data.imageUrl = this.imageUrl !== undefined ? this.imageUrl : null as any;
+    data.activated = this.activated !== undefined ? this.activated : false;
     return data;
   }
 }

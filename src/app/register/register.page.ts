@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {RegisterVm} from "../api/register/RegisterVm";
+import {UserClient} from "../api/user/UserClient";
 
 @Component({
   selector: 'app-register',
@@ -13,25 +14,33 @@ export class RegisterPage implements OnInit {
   form: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-              private router: Router) {
+              private router: Router,
+              private userClient: UserClient) {
   }
 
   ngOnInit() {
     this.initForm();
   }
 
+  onSubmit() {
+    if (this.form.invalid) {
+      this.displayValidationErrors();
+      return;
+    }
 
-  private initForm() {
-    this.form = this.formBuilder.group({
-        email: ['', [Validators.required, this.emailValidator()]],
-        password: ['', [Validators.required, Validators.minLength(8)]],
-        passwordRepeat: ['', [Validators.required]],
-        firstName: ['', [this.charsValidator()]],
-        lastName: ['', [this.charsValidator()]],
-      },
-      {
-        validator: this.ConfirmPasswordValidator("password", "passwordRepeat"),
-      });
+    const registerVm: RegisterVm = new RegisterVm(this.form.value);
+    /*
+        this.userClient.register(registerVm)
+        .pipe(catchError((err: ApiException) => throwError(err)))
+        .subscribe((user: UserVm) => {
+          console.log(user);
+          this.router.navigate(['/login']);
+        }, (err: ApiException) => {
+          console.log(err);
+        });
+     */
+    this.userClient.testRegister(registerVm);
+    this.router.navigate(['/login']);
   }
 
   private ConfirmPasswordValidator(password: string, passwordRepeat: string) {
@@ -65,14 +74,18 @@ export class RegisterPage implements OnInit {
     };
   }
 
-  onSubmit() {
-    if (this.form.invalid) {
-      this.displayValidationErrors();
-      return;
-    }
-
-    alert('Registration Valid');
-    const registerVm: RegisterVm = new RegisterVm(this.form.value);
+  private initForm() {
+    this.form = this.formBuilder.group({
+        email: ['', [Validators.required, this.emailValidator()]],
+        firstName: ['', [this.charsValidator()]],
+        lastName: ['', [this.charsValidator()]],
+        password: ['', [Validators.required, Validators.minLength(8)]],
+        passwordRepeat: ['', [Validators.required]],
+        code: ['', Validators.minLength(8)]
+      },
+      {
+        validator: this.ConfirmPasswordValidator("password", "passwordRepeat"),
+      });
   }
 
   private displayValidationErrors() {
@@ -83,7 +96,4 @@ export class RegisterPage implements OnInit {
     });
   }
 
-  private passwordMatching() {
-    return undefined;
-  }
 }

@@ -88,13 +88,28 @@
             </ng-container>
           </ion-item>
         </div>
-        <div class="main-button">
-            <ion-button class="ios ion-align-items-center log-button" expand="block" type="submit">
-              Registrieren
-            </ion-button>
+        <div>
+          <ion-item>
+            <ion-label position="stacked">Aktivierungscode (Optional)</ion-label>
+            <ion-input class="input" formControlName="code" minlength="8" required="false" type="code">
+            </ion-input>
+            <ng-container *ngIf="form.get('code').dirty && form.get('code').errors">
+              <div class="error">
+                <ng-container *ngIf="form.get('code').hasError('noMatch')">
+                  Der Aktivierungscode ist ungültig
+                </ng-container>
+              </div>
+            </ng-container>
+          </ion-item>
         </div>
         <div class="main-button">
-          <ion-button class="ios ion-align-items-center log-button" expand="block" fill="clear" [routerLink]="['/login']">
+          <ion-button class="ios ion-align-items-center log-button" expand="block" type="submit">
+            Registrieren
+          </ion-button>
+        </div>
+        <div class="main-button">
+          <ion-button class="ios ion-align-items-center log-button" expand="block" fill="clear"
+                      [routerLink]="['/login']">
             Einloggen
           </ion-button>
         </div>

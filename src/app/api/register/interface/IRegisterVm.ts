@@ -1,5 +1,6 @@
 export interface IRegisterVm {
-  registrationCode: string;
+  activationCode: string;
+  email: string;
   username: string;
   password: string;
   firstName?: string | null;

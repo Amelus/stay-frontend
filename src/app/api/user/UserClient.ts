@@ -48,20 +48,6 @@ export class UserClient {
     return null;
   }
 
-  setSessionUserTest(loginVm: LoginVm) {
-    const expiresAt = dayjs().add(Number(999999999999999), 'second');
-    localStorage.setItem('id_token', "testtoken");
-    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
-
-    let user: UserVm = new UserVm();
-    user.username = loginVm.username;
-    user.role = UserVmRole.User;
-    user.firstName = 'Max';
-    user.lastName = 'Mustermann';
-
-    localStorage.setItem('user', JSON.stringify(user));
-  }
-
   updateSessionUserImage(imageUrl: string) {
     const sessionUser: UserVm = this.getSessionUser();
     sessionUser.imageUrl = imageUrl;
@@ -364,44 +350,11 @@ export class UserClient {
     }));
   }
 
-  protected processGetall(response: HttpResponseBase): Observable<UserVm[]> {
-    const status = response.status;
-    const responseBlob =
-      response instanceof HttpResponse ? response.body :
-        (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-    const headers: any = {};
-    if (response.headers) {
-      for (const key of response.headers.keys()) {
-        headers[key] = response.headers.get(key);
-      }
-    }
-
-    if (status === 200) {
-      return blobToText(responseBlob).pipe(_observableMergeMap(responseText => {
-        let result200: any = null;
-        const resultData200 = responseText === '' ? null : JSON.parse(responseText, this.jsonParseReviver);
-        if (resultData200 && resultData200.constructor === Array) {
-          result200 = [];
-          for (const item of resultData200) {
-            result200.push(UserVm.fromJS(item));
-          }
-        }
-        return _observableOf(result200);
-      }));
-    } else if (status === 400) {
-      return blobToText(responseBlob).pipe(_observableMergeMap(responseText => {
-        let result400: any = null;
-        const resultData400 = responseText === '' ? null : JSON.parse(responseText, this.jsonParseReviver);
-        result400 = resultData400 ? ApiException.fromJS(resultData400) : new ApiException();
-        return throwException('A server error occurred.', status, responseText, headers, result400);
-      }));
-    } else if (status !== 200 && status !== 204) {
-      return blobToText(responseBlob).pipe(_observableMergeMap(responseText => {
-        return throwException('An unexpected server error occurred.', status, responseText, headers);
-      }));
-    }
-    return _observableOf<UserVm[]>(null as any);
+  testRegister(registerVm: RegisterVm) {
+    let loginVm: LoginVm = new LoginVm();
+    loginVm.username = registerVm.username;
+    let hasActivation: boolean = registerVm.activationCode !== undefined;
+    this.testLogin(loginVm, hasActivation);
   }
 
   logout() {
@@ -422,5 +375,69 @@ export class UserClient {
     const expiration = localStorage.getItem('expires_at');
     const expiresAt = JSON.parse(expiration);
     return dayjs(expiresAt);
+  }
+
+  testLogin(loginVm: LoginVm, activated: boolean = false) {
+    const expiresAt = dayjs().add(Number(999999999999999), 'second');
+    localStorage.setItem('id_token', "testtoken");
+    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+
+    let user: UserVm = new UserVm();
+    user.username = loginVm.username;
+    user.role = UserVmRole.User;
+    user.firstName = 'Max';
+    user.lastName = 'Mustermann';
+
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  testActivateUser(activationCode: string): Observable<string> {
+    let sessionUser: UserVm = this.getSessionUser();
+    // dummy activation no Server request yet
+    sessionUser.activated = true;
+    localStorage.removeItem('user');
+    localStorage.setItem('user', JSON.stringify(sessionUser));
+    return _observableOf("SUCCESS")
+  }
+
+  protected processGetall(response: HttpResponseBase): Observable<UserVm[]> {
+    const status = response.status;
+    const responseBlob =
+      response instanceof HttpResponse ? response.body :
+        (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+    const headers: any = {};
+    if (response.headers) {
+      for (const key of response.headers.keys()) {
+        headers[key] = response.headers.get(key);
+      }
+    }
+
+    if (status === 200) {
+      return blobToText(responseBlob)
+        .pipe(_observableMergeMap(responseText => {
+          let result200: any = null;
+          const resultData200 = responseText === '' ? null : JSON.parse(responseText, this.jsonParseReviver);
+          if (resultData200 && resultData200.constructor === Array) {
+            result200 = [];
+            for (const item of resultData200) {
+              result200.push(UserVm.fromJS(item));
+            }
+          }
+          return _observableOf(result200);
+        }));
+    } else if (status === 400) {
+      return blobToText(responseBlob).pipe(_observableMergeMap(responseText => {
+        let result400: any = null;
+        const resultData400 = responseText === '' ? null : JSON.parse(responseText, this.jsonParseReviver);
+        result400 = resultData400 ? ApiException.fromJS(resultData400) : new ApiException();
+        return throwException('A server error occurred.', status, responseText, headers, result400);
+      }));
+    } else if (status !== 200 && status !== 204) {
+      return blobToText(responseBlob).pipe(_observableMergeMap(responseText => {
+        return throwException('An unexpected server error occurred.', status, responseText, headers);
+      }));
+    }
+    return _observableOf<UserVm[]>(null as any);
   }
 }

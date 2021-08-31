@@ -50,7 +50,7 @@ export class LoginPage implements OnInit {
         console.log(err);
         this.loading = false;
       });*/
-    this.userClient.setSessionUserTest(loginVm);
+    this.userClient.testLogin(loginVm);
     this.router.navigateByUrl(this.returnUrl);
   }
 

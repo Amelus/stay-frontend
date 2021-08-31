@@ -1,18 +1,18 @@
 <ion-content [fullscreen]="true">
 
-  <div style="width: 100%; height: 100%; top: 0%; bottom: 0%; background: #000000;">
-    <div id='main-box'>
-      <a id="element-stay-in-touch" class="button-element" [routerLink]="['/stay-in-touch']">
-        <p class="p-center-h-v">stay in touch</p>
-      </a>
-      <div id="element-2" class="button-element" [routerLink]="['/stay-informed']">
-        <p class="p-center-h-v">stay informed</p>
+  <div class="content-outer">
+    <div class="content-inner">
+      <div id='main-box'>
+        <a [routerLink]="['/stay-in-touch']" class="button-element" id="element-stay-in-touch">
+          <p class="p-center-h-v">stay in touch</p>
+        </a>
+        <a [routerLink]="['/stay-informed']" class="button-element" id="element-2">
+          <p class="p-center-h-v">stay informed</p>
+        </a>
+      </div>
+      <div class="upgrade-button">
+        <ion-button (click)="showActivation()" slot="secondary">App freischalten</ion-button>
       </div>
     </div>
-  </div>
-  <div>
-    <ion-toolbar>
-      <ion-button slot="secondary">App freischalten</ion-button>
-    </ion-toolbar>
   </div>
 </ion-content>
