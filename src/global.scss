@@ -24,3 +24,52 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.content-outer {
+  padding: 50px;
+  overflow: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.error {
+  color: red;
+  font-size: small;
+  padding-bottom: 10px;
+}
+
+@media only screen and (min-width: 410px) {
+  .content-inner {
+    width: 360px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .content-inner {
+    width: 700px;
+  }
+}
+
+.seperator {
+  margin-top: 6%;
+  border-top: grey;
+  border-top-width: thin;
+  border-top-style: groove;
+  padding-top: 3%;
+  margin-bottom: 3%;
+  text-align: center;
+}
+
+.appointment-selection-modal-css .modal-wrapper {
+  height: 330px;
+  position: absolute;
+  display: block;
+}
+
+.activation-component .modal-wrapper {
+  height: 168px;
+  position: absolute;
+  display: block;
+  width: 288px;
+}

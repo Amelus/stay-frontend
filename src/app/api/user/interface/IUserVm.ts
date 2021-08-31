@@ -10,4 +10,5 @@ export interface IUserVm {
   fullName?: string | null;
   role?: UserVmRole | null;
   imageUrl?: string | null;
+  activated?: boolean | false;
 }

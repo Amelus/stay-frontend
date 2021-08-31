@@ -1,3 +1,46 @@
-<ion-content [fullscreen]="true">
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Einstellungen</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="false">
+
+  <div class="content-outer">
+    <div class="content-inner">
+      <ion-title>Benachrichtiungen</ion-title>
+      <ion-list>
+        <ion-item>
+          <ion-label>Notification 1</ion-label>
+          <ion-toggle slot="start" name="notify1" checked></ion-toggle>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Notification 2</ion-label>
+          <ion-toggle slot="start" name="notify2" color="secondary" checked></ion-toggle>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Notification 3</ion-label>
+          <ion-toggle slot="start" name="notify3" color="tertiary" checked></ion-toggle>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Notification 4</ion-label>
+          <ion-toggle slot="start" name="notify4" color="success" checked></ion-toggle>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Notification 5</ion-label>
+          <ion-toggle slot="start" name="notify5" color="warning" checked></ion-toggle>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Notification 6</ion-label>
+          <ion-toggle slot="start" name="notify6" color="danger" checked></ion-toggle>
+        </ion-item>
+
+      </ion-list>
+    </div>
+  </div>
 </ion-content>

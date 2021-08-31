@@ -12,7 +12,8 @@ export class RegisterVm implements IRegisterVm {
     }
   }
 
-  registrationCode!: string;
+  activationCode!: string;
+  email!: string;
   username!: string;
   password!: string;
   firstName?: string | null;
@@ -27,7 +28,8 @@ export class RegisterVm implements IRegisterVm {
 
   init(data?: any) {
     if (data) {
-      this.registrationCode = data.registrationCode !== undefined ? data.registrationCode : null as any;
+      this.activationCode = data.activationCode !== undefined ? data.activationCode : null as any;
+      this.email = data.email !== undefined ? data.email : null as any;
       this.username = data.username !== undefined ? data.username : null as any;
       this.password = data.password !== undefined ? data.password : null as any;
       this.firstName = data.firstName !== undefined ? data.firstName : null as any;
@@ -37,7 +39,8 @@ export class RegisterVm implements IRegisterVm {
 
   toJSON(data?: any) {
     data = typeof data === 'object' ? data : {};
-    data.registrationCode = this.registrationCode !== undefined ? this.registrationCode : null as any;
+    data.activationCode = this.activationCode !== undefined ? this.activationCode : null as any;
+    data.email = this.email !== undefined ? this.email : null as any;
     data.username = this.username !== undefined ? this.username : null as any;
     data.password = this.password !== undefined ? this.password : null as any;
     data.firstName = this.firstName !== undefined ? this.firstName : null as any;

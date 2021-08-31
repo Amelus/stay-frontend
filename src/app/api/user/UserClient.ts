@@ -1,3 +1,4 @@
+// @ts-ignore
 import {Inject, Injectable, Optional} from "@angular/core";
 import {HttpClient, HttpHeaders, HttpResponse, HttpResponseBase} from "@angular/common/http";
 import {Observable, of as _observableOf, Subscription} from "rxjs";
@@ -14,9 +15,8 @@ import {UpdateUserVm} from './UpdateUserVm';
 import {UserVm} from './UserVm';
 
 import {API_BASE_URL, blobToText, throwException} from '../api';
-
-// TODO replace momentJS with daysJS
-import * as moment from 'moment';
+import * as dayjs from 'dayjs'
+import {UserVmRole} from "./UserVmRole";
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +33,7 @@ export class UserClient {
   protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
   private static setSession(loginResponseVm: LoginResponseVm) {
-    const expiresAt = moment().add(loginResponseVm.expiresIn, 'second');
+    const expiresAt = dayjs().add(Number(loginResponseVm.expiresIn), 'second');
 
     localStorage.setItem('id_token', loginResponseVm.token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
@@ -42,7 +42,10 @@ export class UserClient {
 
   getSessionUser(): UserVm {
     const parsedUser = JSON.parse(localStorage.getItem('user'));
-    return UserVm.fromJS(parsedUser);
+    if (parsedUser !== null) {
+      return UserVm.fromJS(parsedUser);
+    }
+    return null;
   }
 
   updateSessionUserImage(imageUrl: string) {
@@ -347,6 +350,56 @@ export class UserClient {
     }));
   }
 
+  testRegister(registerVm: RegisterVm) {
+    let loginVm: LoginVm = new LoginVm();
+    loginVm.username = registerVm.username;
+    let hasActivation: boolean = registerVm.activationCode !== undefined;
+    this.testLogin(loginVm, hasActivation);
+  }
+
+  logout() {
+    localStorage.removeItem('id_token');
+    localStorage.removeItem('expires_at');
+    localStorage.removeItem('user');
+  }
+
+  public isLoggedIn() {
+    return dayjs().isBefore(this.getTokenExpiration());
+  }
+
+  isLoggedOut() {
+    return !this.isLoggedIn();
+  }
+
+  getTokenExpiration() {
+    const expiration = localStorage.getItem('expires_at');
+    const expiresAt = JSON.parse(expiration);
+    return dayjs(expiresAt);
+  }
+
+  testLogin(loginVm: LoginVm, activated: boolean = false) {
+    const expiresAt = dayjs().add(Number(999999999999999), 'second');
+    localStorage.setItem('id_token', "testtoken");
+    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+
+    let user: UserVm = new UserVm();
+    user.username = loginVm.username;
+    user.role = UserVmRole.User;
+    user.firstName = 'Max';
+    user.lastName = 'Mustermann';
+
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  testActivateUser(activationCode: string): Observable<string> {
+    let sessionUser: UserVm = this.getSessionUser();
+    // dummy activation no Server request yet
+    sessionUser.activated = true;
+    localStorage.removeItem('user');
+    localStorage.setItem('user', JSON.stringify(sessionUser));
+    return _observableOf("SUCCESS")
+  }
+
   protected processGetall(response: HttpResponseBase): Observable<UserVm[]> {
     const status = response.status;
     const responseBlob =
@@ -361,17 +414,18 @@ export class UserClient {
     }
 
     if (status === 200) {
-      return blobToText(responseBlob).pipe(_observableMergeMap(responseText => {
-        let result200: any = null;
-        const resultData200 = responseText === '' ? null : JSON.parse(responseText, this.jsonParseReviver);
-        if (resultData200 && resultData200.constructor === Array) {
-          result200 = [];
-          for (const item of resultData200) {
-            result200.push(UserVm.fromJS(item));
+      return blobToText(responseBlob)
+        .pipe(_observableMergeMap(responseText => {
+          let result200: any = null;
+          const resultData200 = responseText === '' ? null : JSON.parse(responseText, this.jsonParseReviver);
+          if (resultData200 && resultData200.constructor === Array) {
+            result200 = [];
+            for (const item of resultData200) {
+              result200.push(UserVm.fromJS(item));
+            }
           }
-        }
-        return _observableOf(result200);
-      }));
+          return _observableOf(result200);
+        }));
     } else if (status === 400) {
       return blobToText(responseBlob).pipe(_observableMergeMap(responseText => {
         let result400: any = null;
@@ -385,25 +439,5 @@ export class UserClient {
       }));
     }
     return _observableOf<UserVm[]>(null as any);
-  }
-
-  logout() {
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('expires_at');
-    localStorage.removeItem('user');
-  }
-
-  public isLoggedIn() {
-    return moment().isBefore(this.getTokenExpiration());
-  }
-
-  isLoggedOut() {
-    return !this.isLoggedIn();
-  }
-
-  getTokenExpiration() {
-    const expiration = localStorage.getItem('expires_at');
-    const expiresAt = JSON.parse(expiration);
-    return moment(expiresAt);
   }
 }

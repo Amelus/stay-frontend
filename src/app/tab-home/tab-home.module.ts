@@ -1,4 +1,5 @@
 import {IonicModule} from '@ionic/angular';
+// @ts-ignore
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
@@ -6,6 +7,7 @@ import {TabHomePage} from './tab-home.page';
 import {ExploreContainerComponentModule} from '../explore-container/explore-container.module';
 
 import {TabHomePageRoutingModule} from './tab-home-routing.module';
+import {ComponentModule} from "../components/component.module";
 
 @NgModule({
   imports: [
@@ -13,7 +15,8 @@ import {TabHomePageRoutingModule} from './tab-home-routing.module';
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    TabHomePageRoutingModule
+    TabHomePageRoutingModule,
+    ComponentModule
   ],
   declarations: [TabHomePage]
 })

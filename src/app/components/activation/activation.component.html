@@ -1,0 +1,34 @@
+<ion-toolbar>
+  <ion-title>Aktivierungscode eingeben</ion-title>
+</ion-toolbar>
+
+<ion-content>
+  <form [formGroup]="form">
+    <ion-item>
+      <ion-label position="floating">Code</ion-label>
+      <ion-input class="input" formControlName="code" minlength="8" required="true" type="code">
+      </ion-input>
+      <ng-container *ngIf="form.get('code').dirty && form.get('code').errors">
+        <div class="error">
+          <ng-container *ngIf="form.get('code').hasError('required')">
+            Der Code ist ein Pflichtfeld
+          </ng-container>
+          <ng-container *ngIf="form.get('code').hasError('minlength')">
+            Der Code ist mindestens 8 Zeichen lang
+          </ng-container>
+        </div>
+      </ng-container>
+    </ion-item>
+  </form>
+</ion-content>
+
+<ion-toolbar>
+  <ion-buttons>
+    <ion-button (click)="onSubmit()" slot="start">
+      Bestätigen
+    </ion-button>
+    <ion-button (click)="dismiss()" fill="clear" slot="end">
+      Abbrechen
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
