@@ -22,7 +22,7 @@
     "@angular/service-worker": "^11",
     "@capacitor/core": "2.4.7",
     "@ionic/angular": "^5.5.2",
-    "@ionic/cli": "^6.16.1",
+    "@ionic/cli": "^6.16.3",
     "moment": "latest",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

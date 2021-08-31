@@ -9,7 +9,9 @@ const routes: Routes = [
     children: [
       {
         path: 'tab-home',
-        loadChildren: () => import('../tab-home/tab-home.module').then(m => m.TabHomePageModule)
+        loadChildren: () => import('../start-page/start-page.module').then( m => m.StartPagePageModule)
+        // loadChildren: () => import('../tab-home/tab-home.module').then(m => m.TabHomePageModule)
+
       },
       {
         path: 'tab-profile',

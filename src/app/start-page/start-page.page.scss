@@ -1,0 +1,82 @@
+.main-div {
+  //background: url(images/amway_get_a_fresh_take.jpeg) no-repeat center center / 100% auto;
+  background-image: url(images/amway_get_a_fresh_take.jpeg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  //background-attachment: fixed;
+  background-size: 100% auto;
+
+  position: absolute;
+  overflow: auto;
+
+  height: 100%;
+  width: 100%;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// values should be seen as percentages!
+$button_width: 41;
+$button_height: 15;
+
+$button_spacing_y: 2;
+
+$top1: 64;
+$top2: $top1 + $button_height + $button_spacing_y;
+
+$horizontal1: 51;
+
+.button-props {
+  position: absolute;
+
+  background: #FFFFFFC0;
+  border-color: rgba(13, 82, 17, 0.52);
+  border-width: 4px;
+  border-style: solid;
+  border-radius: 8px;
+
+  width: $button_width * 1%; // this will create the value to a percentage value!
+  height: $button_height * 1%;
+
+  margin: 0px;
+  padding: 0px;
+
+  display: table;
+}
+
+#button1 {
+  top: $top1 * 1%;
+  right: $horizontal1 * 1%;
+}
+
+ #button2 {
+   top: $top1 * 1%;
+   left: $horizontal1 * 1%;
+}
+
+#button3 {
+  top: $top2 * 1%;
+  right: $horizontal1 * 1%;
+}
+
+#button4 {
+  top: $top2 * 1%;
+  left: $horizontal1 * 1%;
+}
+
+.p-center-h-v {
+  text-align:center;
+  vertical-align: middle;
+  display: table-cell;
+  font-size: 20px;
+}
+
+.no-select {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
