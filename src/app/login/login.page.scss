@@ -1,0 +1,45 @@
+#form-outer-div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.row-style {
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+.input-wrapper {
+  margin: 0px;
+  padding: 0px;
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+.default-field {
+  background-color: #F0F0F0;
+  margin-top: 10px;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.size-input-info {
+  padding-top: 5px;
+  height: 100%;
+}
+
+.error-input-value {
+  color: #971011;
+}
+
+.valid-input-value {
+  color: #1b8e08;
+}
+
+.button-style {
+  border-radius: 5px;
+}

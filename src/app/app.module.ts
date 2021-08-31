@@ -1,4 +1,3 @@
-// @ts-ignore
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouteReuseStrategy} from '@angular/router';
@@ -22,12 +21,13 @@ import {AuthInterceptor} from "./auth/auth.interceptor";
     IonicModule.forRoot(),
     AppRoutingModule
   ],
+  exports: [BrowserModule],
   providers: [
     FormBuilder,
     AuthGuard,
-    { provide: API_BASE_URL, useFactory: baseUrl },
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor , multi: true },
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    {provide: API_BASE_URL, useFactory: baseUrl},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
   ],
   bootstrap: [AppComponent],
 })

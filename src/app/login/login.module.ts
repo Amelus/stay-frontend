@@ -1,4 +1,3 @@
-// @ts-ignore
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -8,14 +7,16 @@ import {IonicModule} from '@ionic/angular';
 import {LoginPageRoutingModule} from './login-routing.module';
 
 import {LoginPage} from './login.page';
+import {UserClientModule} from '../api/user/UserClient.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     IonicModule,
     LoginPageRoutingModule,
-    ReactiveFormsModule
+    UserClientModule,
   ],
   declarations: [LoginPage]
 })
