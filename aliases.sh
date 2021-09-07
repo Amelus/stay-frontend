@@ -16,3 +16,5 @@ alias f-login='git checkout feature/Login'
 alias commit='git commit -m'
 alias add='git add'
 alias addall='git add --all'
+
+alias angulardev='npm install --save-dev @angular-devkit/build-angular'
