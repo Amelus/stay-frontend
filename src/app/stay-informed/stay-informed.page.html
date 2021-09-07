@@ -1,9 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Stay informed</ion-title>
+    <div style="position: absolute; float: left; padding: 0px; margin: 10px 0px; text-align: center; width: auto;">
+      <ion-title style="width: 100%">Stay informed</ion-title>
+    </div>
     <ion-back-button slot="start">
       <ion-icon name="arrow-back-outline"></ion-icon>
     </ion-back-button>
+
+    <div style="float: right; margin-right: 10px;">
+      <ion-button *ngIf="isAdmin" (click)="toggleEdit($event)" id="editButton">
+        <ion-icon name="create"></ion-icon>
+      </ion-button>
+    </div>
   </ion-toolbar>
 </ion-header>
 
@@ -22,6 +30,7 @@
           und hat sich ein Vertriebssystem aufgebaut das 2.2 Millionen Vertriebspartner umfasst.
         </ion-card-content>
       </ion-card>
+
       <ion-card [routerLink]="['/register']">
         <img src="assets/rolf-sample-2.jpg"/>
         <ion-card-header>
@@ -35,4 +44,10 @@
       </ion-card>
     </div>
   </div>
+
+  <ion-fab *ngIf="isEdit" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button style="margin-right: 10px;" (click)="addNewCard()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
