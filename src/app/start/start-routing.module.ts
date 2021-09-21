@@ -1,13 +1,13 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {StartPagePage} from './start-page.page';
+import {StartPage} from './start.page';
 import {ActivationGuard} from "../auth/activation.guard";
 
 const routes: Routes = [
   {
     path: '',
-    component: StartPagePage,
+    component: StartPage,
     canActivate: [ActivationGuard]
   }
 ];
@@ -16,5 +16,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class StartPagePageRoutingModule {
+export class StartPageRoutingModule {
 }

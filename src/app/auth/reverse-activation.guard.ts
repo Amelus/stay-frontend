@@ -2,10 +2,9 @@ import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '
 import {UserClient} from "../api/user/UserClient";
 import {Injectable} from "@angular/core";
 import {UserVm} from "../api/user/UserVm";
-import {UserVmRole} from "../api/user/UserVmRole";
 
 @Injectable()
-export class ActivationGuard implements CanActivate {
+export class ReverseActivationGuard implements CanActivate {
   constructor(private router: Router,
               private userClient: UserClient) {
   }
@@ -13,10 +12,10 @@ export class ActivationGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     let sessionUser: UserVm = this.userClient.getSessionUser();
     // make check for token
-    if (sessionUser !== null && (sessionUser.activated || sessionUser.role === UserVmRole.Admin)) {
+    if (sessionUser === null || !sessionUser.activated) {
       return true;
     }
-    this.router.navigate([''], {queryParams: {returnUrl: state.url}});
+    this.router.navigate(['/tabs/start']);
     return false;
   }
 }

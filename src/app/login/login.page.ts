@@ -1,6 +1,6 @@
 // @ts-ignore
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserClient} from "../api/user/UserClient";
 import {LoginVm} from "../api/login/LoginVm";
@@ -27,7 +27,7 @@ export class LoginPage implements OnInit {
   }
 
   onSubmit() {
-    this.loading = true;
+    //this.loading = true;
     if (this.form.invalid) {
       this.displayValidationErrors();
       return;
@@ -44,14 +44,23 @@ export class LoginPage implements OnInit {
         this.loading = false;
       });*/
     this.userClient.testLogin(loginVm);
+    this.form.reset();
     this.router.navigateByUrl(this.returnUrl);
   }
 
   private initForm() {
     this.form = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.minLength(6)]],
+      username: ['', [Validators.required, this.emailValidator]],
       password: ['', [Validators.required, Validators.minLength(8)]],
     });
+  }
+
+  private emailValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const emailRegex: RegExp = new RegExp('[^@ \\t\\r\\n]+@[^@ \\t\\r\\n]+\\.[^@ \\t\\r\\n]+');
+      const valid = emailRegex.test(control.value);
+      return valid ? null : {emailValid: {value: control.value}};
+    };
   }
 
   private displayValidationErrors() {

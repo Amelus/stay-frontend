@@ -40,7 +40,7 @@ export class RegisterPage implements OnInit {
         });
      */
     this.userClient.testRegister(registerVm);
-    this.router.navigate(['/login']);
+    this.router.navigate(['/tabs/tab-profile']);
   }
 
   private ConfirmPasswordValidator(password: string, passwordRepeat: string) {
@@ -81,7 +81,7 @@ export class RegisterPage implements OnInit {
         lastName: ['', [this.charsValidator()]],
         password: ['', [Validators.required, Validators.minLength(8)]],
         passwordRepeat: ['', [Validators.required]],
-        code: ['', Validators.minLength(8)]
+        activationCode: ['', Validators.minLength(8)]
       },
       {
         validator: this.ConfirmPasswordValidator("password", "passwordRepeat"),

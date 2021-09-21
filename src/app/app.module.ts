@@ -11,6 +11,8 @@ import {FormBuilder} from "@angular/forms";
 import {AuthGuard} from "./auth/auth.guard";
 import {API_BASE_URL} from "./api/api";
 import {AuthInterceptor} from "./auth/auth.interceptor";
+import {ActivationGuard} from "./auth/activation.guard";
+import {ReverseActivationGuard} from "./auth/reverse-activation.guard";
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +27,8 @@ import {AuthInterceptor} from "./auth/auth.interceptor";
   providers: [
     FormBuilder,
     AuthGuard,
+    ActivationGuard,
+    ReverseActivationGuard,
     {provide: API_BASE_URL, useFactory: baseUrl},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}

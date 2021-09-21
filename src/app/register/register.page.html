@@ -20,8 +20,8 @@
                 <ng-container *ngIf="form.get('email').hasError('required')">
                   E-Mail ist ein Pflichtfeld
                 </ng-container>
-                <ng-container *ngIf="form.get('email').hasError('minlength')">
-                  Die E-Mail muss mindestens 6 Zeichen lang sein
+                <ng-container *ngIf="form.get('email').hasError('emailValid')">
+                  Bitte geben sie eine gültige E-Mail ein
                 </ng-container>
               </div>
             </ng-container>
@@ -91,11 +91,11 @@
         <div>
           <ion-item>
             <ion-label position="stacked">Aktivierungscode (Optional)</ion-label>
-            <ion-input class="input" formControlName="code" minlength="8" required="false" type="code">
+            <ion-input class="input" formControlName="activationCode" minlength="8" required="false" type="code">
             </ion-input>
-            <ng-container *ngIf="form.get('code').dirty && form.get('code').errors">
+            <ng-container *ngIf="form.get('activationCode').dirty && form.get('activationCode').errors">
               <div class="error">
-                <ng-container *ngIf="form.get('code').hasError('noMatch')">
+                <ng-container *ngIf="form.get('activationCode').hasError('noMatch')">
                   Der Aktivierungscode ist ungültig
                 </ng-container>
               </div>
