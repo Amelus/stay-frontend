@@ -1,6 +1,5 @@
 .main-div {
   //background: url(images/amway_get_a_fresh_take.jpeg) no-repeat center center / 100% auto;
-  background-image: url(images/amway_get_a_fresh_take.jpeg);
   background-repeat: no-repeat;
   background-position: center center;
   //background-attachment: fixed;
@@ -19,11 +18,11 @@
 
 // values should be seen as percentages!
 $button_width: 41;
-$button_height: 15;
+$button_height: 25;
 
 $button_spacing_y: 2;
 
-$top1: 64;
+$top1: 30;
 $top2: $top1 + $button_height + $button_spacing_y;
 
 $horizontal1: 51;

@@ -67,9 +67,21 @@
   display: block;
 }
 
-.activation-component .modal-wrapper {
-  height: 168px;
-  position: absolute;
-  display: block;
-  width: 288px;
+.activation-component {
+  --height: auto;
+
+  .modal-wrapper {
+    width: 288px;
+
+    .ion-page {
+      position: relative;
+      contain: content;
+      max-height: 300px;
+
+      .modal-content {
+        overflow: auto;
+      }
+    }
+  }
 }
+

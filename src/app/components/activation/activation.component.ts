@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ModalController} from "@ionic/angular";
+import {AlertController, ModalController} from "@ionic/angular";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserClient} from "../../api/user/UserClient";
 import {ApiException} from "../../api/shared/exception/ApiException";
@@ -17,6 +17,7 @@ export class ActivationComponent implements OnInit {
   form: FormGroup;
 
   constructor(public modalController: ModalController,
+              private alertController: AlertController,
               private formBuilder: FormBuilder,
               private userClient: UserClient,
               private router: Router) {
@@ -37,10 +38,11 @@ export class ActivationComponent implements OnInit {
       .pipe(catchError((err: ApiException) => throwError(err)))
       .subscribe((response: string) => {
         console.log(response);
-        this.router.navigate(['']);
+        this.presentUpgradeSuccess();
       }, (err: ApiException) => {
-        console.log(err);
+        this.presentUpgradeFailed(err.error);
       })
+    this.dismiss();
   }
 
   public async dismiss() {
@@ -51,7 +53,7 @@ export class ActivationComponent implements OnInit {
 
   private initForm() {
     this.form = this.formBuilder.group({
-      code: ['', Validators.required, Validators.minLength(8)]
+      code: ['', [Validators.required, Validators.minLength(8)]]
     })
   }
 
@@ -61,5 +63,36 @@ export class ActivationComponent implements OnInit {
       this.form.controls[key].markAsDirty();
       this.form.controls[key].updateValueAndValidity();
     });
+  }
+
+  private async presentUpgradeSuccess() {
+    const alert = await this.alertController.create({
+      header: 'App erfolgreich freigeschalten',
+      message: 'Ihr Account wurde erfolgreich aktiviert, Sie müssen sich nun erneut einloggen',
+      buttons: [
+        {
+          text: 'OK',
+          cssClass: 'primary',
+          handler: () => {
+            this.router.navigate(['/login'])
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  private async presentUpgradeFailed(errorMsg: string) {
+    const alert = await this.alertController.create({
+      header: 'Aktivieren fehlgeschlagen',
+      message: 'Fehler: ' + errorMsg,
+      buttons: [
+        {
+          text: 'OK',
+          cssClass: 'primary'
+        }
+      ]
+    });
+    await alert.present();
   }
 }

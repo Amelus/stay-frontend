@@ -13,8 +13,8 @@ const routes: Routes = [
         loadChildren: () => import('../tab-home/tab-home.module').then(m => m.TabHomePageModule)
       },
       {
-        path: 'start-page',
-        loadChildren: () => import('../start-page/start-page.module').then(m => m.StartPagePageModule)
+        path: 'start',
+        loadChildren: () => import('../start/start.module').then(m => m.StartPageModule)
       },
       {
         path: 'tab-profile',

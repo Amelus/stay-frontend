@@ -5,11 +5,7 @@ import {UserVm} from "../api/user/UserVm";
 import {Router} from "@angular/router";
 import {AlertController} from "@ionic/angular";
 import {UserClient} from "../api/user/UserClient";
-import {ApiException} from "../api/shared/exception/ApiException";
 import {UserVmRole} from "../api/user/UserVmRole";
-import {UpdateUserResponseVm} from "../api/user/UpdateUserResponseVm";
-import {throwError} from "rxjs";
-import {catchError} from "rxjs/operators";
 import {UpdateUserVm} from "../api/user/UpdateUserVm";
 
 
@@ -42,7 +38,8 @@ export class TabProfilePage implements OnInit {
 
     if (this.form.dirty) {
       const userVm: UpdateUserVm = new UpdateUserVm(this.form.value);
-      this.userClient.update(userVm)
+
+      /*this.userClient.update(userVm)
         .pipe(catchError((err: ApiException) => throwError(err)))
         .subscribe((user: UpdateUserResponseVm) => {
           console.log(user);
@@ -53,9 +50,11 @@ export class TabProfilePage implements OnInit {
           this.needsUpgrade = user.role === UserVmRole.User;
         }, (err: ApiException) => {
           console.log(err);
-        });
+        });*/
 
+      this.userClient.testActivateUser(userVm.upgradeCode);
       this.form.reset();
+      this.presentUpgradeSuccess();
 
     } else {
       console.log('Nothing to change');
@@ -76,12 +75,27 @@ export class TabProfilePage implements OnInit {
     });
   }
 
-  private initUser() {
-    this.currentUser = this.userClient.getSessionUser();
-    /*if (this.currentUser.imageUrl) { set User Image
-      this.profilePicture = this.currentUser.imageUrl;
-    }*/
-    this.needsUpgrade = this.currentUser.role === UserVmRole.User;
+  async presentLogoutAlert() {
+    const alert = await this.alertController.create({
+      header: 'Logout',
+      message: 'Sicher dass Sie sich ausloggen möchten?',
+      buttons: [
+        {
+          text: 'Ja',
+          cssClass: 'primary',
+          handler: () => {
+            this.userClient.logout();
+            this.router.navigate(['/login'])
+          }
+        },
+        {
+          text: 'Abbrechen',
+          role: 'cancel',
+          cssClass: 'secondary'
+        }
+      ]
+    });
+    await alert.present();
   }
 
   private displayValidationErrors() {
@@ -92,22 +106,12 @@ export class TabProfilePage implements OnInit {
     });
   }
 
-  private async presentUpgradeSuccess() {
-    const alert = await this.alertController.create({
-      header: 'App erfolgreich freigeschalten',
-      message: 'Ihr Account wurde erfolgreich upgegradet, Sie müssen sich nun erneut einloggen',
-      buttons: [
-        {
-          text: 'OK',
-          cssClass: 'primary',
-          handler: () => {
-            this.userClient.logout();
-            this.router.navigate(['/login']);
-          }
-        }
-      ]
-    });
-    await alert.present();
+  private initUser() {
+    this.currentUser = this.userClient.getSessionUser();
+    /*if (this.currentUser.imageUrl) { set User Image
+      this.profilePicture = this.currentUser.imageUrl;
+    }*/
+    this.needsUpgrade = this.currentUser.role === UserVmRole.User && this.currentUser.activated !== true;
   }
 
   private oldPwdSetValidator(): ValidatorFn {
@@ -130,8 +134,24 @@ export class TabProfilePage implements OnInit {
     };
   }
 
-  async logout() {
-    this.userClient.logout();
-    await this.router.navigate(['/']);
+  private async presentUpgradeSuccess() {
+    const alert = await this.alertController.create({
+      header: 'Aktualisieren erfolgreich',
+      message: 'Ihr Account wurde erfolgreich aktualisiert',
+      buttons: [
+        {
+          text: 'OK',
+          cssClass: 'primary',
+          handler: () => {
+            /*this.userClient.logout();
+            this.router.navigate(['/login']);
+            For Testing redirect to start
+            */
+            this.router.navigate([''])
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 }
