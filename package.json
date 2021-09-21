@@ -24,6 +24,7 @@
     "@capacitor/core": "2.4.7",
     "@ionic/angular": "^5.5.2",
     "@ionic/cli": "^6.16.3",
+    "@types/lodash": "^4.14.172",
     "dayjs": "^1.10.5",
     "ionic4-date-picker": "^0.1.0",
     "rxjs": "~6.6.0",

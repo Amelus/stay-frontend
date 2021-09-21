@@ -1,0 +1,14 @@
+.input-field-style {
+  background-color: #b0b0b0;
+}
+
+.text-label-style {
+  background-color: #e0e0e0;
+}
+
+.ion-row-own {
+  @import 'node_modules/@ionic/angular/css/utils.bundle';
+
+  //@extend .ion-padding;
+  //@extend .ion-align-items-center;
+}

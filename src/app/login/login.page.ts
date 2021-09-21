@@ -26,13 +26,6 @@ export class LoginPage implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
-  private initForm() {
-    this.form = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.minLength(6)]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-    });
-  }
-
   onSubmit() {
     this.loading = true;
     if (this.form.invalid) {
@@ -52,6 +45,13 @@ export class LoginPage implements OnInit {
       });*/
     this.userClient.testLogin(loginVm);
     this.router.navigateByUrl(this.returnUrl);
+  }
+
+  private initForm() {
+    this.form = this.formBuilder.group({
+      username: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+    });
   }
 
   private displayValidationErrors() {
