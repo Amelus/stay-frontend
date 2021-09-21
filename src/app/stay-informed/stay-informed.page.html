@@ -1,38 +1,48 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Stay informed</ion-title>
+    <div style="position: absolute; float: left; padding: 0px; margin: 10px 0px; text-align: center; width: auto;">
+      <ion-title style="width: 100%">Stay informed</ion-title>
+    </div>
     <ion-back-button slot="start">
       <ion-icon name="arrow-back-outline"></ion-icon>
     </ion-back-button>
+
+    <div style="float: right; margin-right: 10px;">
+      <ion-button *ngIf="isAdmin" (click)="toggleEdit($event)" id="editButton">
+        <ion-icon name="create"></ion-icon>
+      </ion-button>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div class="content-outer">
     <div class="content-inner">
-      <ion-card [routerLink]="['/register']">
-        <img src="assets/rolf-sample.jpg"/>
-        <ion-card-header>
-          <ion-card-subtitle>Die Person</ion-card-subtitle>
-          <ion-card-title>Rolf Kipp</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          Rolf Kipp ist bereits seit über 25 Jahren in seiner Branche tätig.
-          Mittlerweile rangiert er dort in den Top 5 der umsatzstärksten Unternehmer weltweit
-          und hat sich ein Vertriebssystem aufgebaut das 2.2 Millionen Vertriebspartner umfasst.
-        </ion-card-content>
-      </ion-card>
-      <ion-card [routerLink]="['/register']">
-        <img src="assets/rolf-sample-2.jpg"/>
-        <ion-card-header>
-          <ion-card-subtitle>Erfolg</ion-card-subtitle>
-          <ion-card-title>Aufbau eines neuen Geschäfts</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          Erfahre wie du haupt- oder nebenberuflich ein ethisch & krisensicheres Geschäft aufbaust,
-          welches funktioniert, auch wenn man sich zur Ruhe setzt.
-        </ion-card-content>
-      </ion-card>
+
+      <div *ngFor="let card of cards;">
+        <ion-card>
+          <img src="{{card.srcpath}}"/>
+          <ion-card-header>
+            <ion-card-subtitle>{{card.subtitle}}</ion-card-subtitle>
+            <ion-card-title>{{card.title}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>{{card.content}}</ion-card-content>
+
+          <div class="overlay-card-outer" [hidden]="!isEdit" (click)="onEditCard(card)">
+            <div class="overlay-card-inner" style="">
+              <button class="overlay-card-button">Bearbeiten</button>
+            </div>
+          </div>
+          <button class="delete-button" [hidden]="!isEdit" (click)="onDeleteCard(card)">Löschen</button>
+        </ion-card>
+      </div>
+
     </div>
   </div>
+
+  <ion-fab *ngIf="isAdmin" [hidden]="!isEdit" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button style="margin-right: 10px;" (click)="onAddCard()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
