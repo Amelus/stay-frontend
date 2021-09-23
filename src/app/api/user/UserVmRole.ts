@@ -1,5 +1,5 @@
 export enum UserVmRole {
   Admin = 'Admin',
-  Leader = 'Leader',
+  Partner = 'Partner',
   User = 'User',
 }

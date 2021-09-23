@@ -43,4 +43,8 @@ export class CardVm implements ICardVm {
     data.id = this.id !== undefined ? this.id : null as any;
     return data;
   }
+
+  equal(other: CardVm): boolean {
+    return (this.id === other.id);
+  }
 }

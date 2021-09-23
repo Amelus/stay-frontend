@@ -17,6 +17,10 @@ const routes: Routes = [
         loadChildren: () => import('../start/start.module').then(m => m.StartPageModule)
       },
       {
+        path: 'tab-management',
+        loadChildren: () => import('../management/management.module').then(m => m.ManagementPageModule)
+      },
+      {
         path: 'tab-profile',
         loadChildren: () => import('../tab-profile/tab-profile.module').then(m => m.TabProfilePageModule)
       },
