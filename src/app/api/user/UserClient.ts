@@ -352,7 +352,7 @@ export class UserClient {
 
   testRegister(registerVm: RegisterVm) {
     let loginVm: LoginVm = new LoginVm();
-    loginVm.username = registerVm.username;
+    loginVm.username = registerVm.email;
     let hasActivation: boolean = registerVm.activationCode !== undefined;
     this.testLogin(loginVm, hasActivation);
   }
@@ -384,9 +384,18 @@ export class UserClient {
 
     let user: UserVm = new UserVm();
     user.username = loginVm.username;
-    user.role = UserVmRole.User;
-    user.firstName = 'Max';
-    user.lastName = 'Mustermann';
+    if (loginVm.username !== 'admin') {
+      user.role = UserVmRole.User;
+      user.firstName = 'Max';
+      user.lastName = 'Mustermann';
+      if (loginVm.username === 'active' || activated) {
+        user.activated = true;
+      }
+    } else {
+      user.role = UserVmRole.Admin;
+      user.firstName = 'Rolf';
+      user.lastName = 'Kipp';
+    }
 
     localStorage.setItem('user', JSON.stringify(user));
   }
@@ -394,10 +403,15 @@ export class UserClient {
   testActivateUser(activationCode: string): Observable<string> {
     let sessionUser: UserVm = this.getSessionUser();
     // dummy activation no Server request yet
-    sessionUser.activated = true;
-    localStorage.removeItem('user');
-    localStorage.setItem('user', JSON.stringify(sessionUser));
-    return _observableOf("SUCCESS")
+    if (sessionUser !== null) {
+      sessionUser.activated = true;
+      localStorage.removeItem('user');
+      localStorage.setItem('user', JSON.stringify(sessionUser));
+      return _observableOf("SUCCESS")
+    }
+
+    let err: ApiException = new ApiException({error: 'User not logged in'});
+    return _observableThrow(err);
   }
 
   protected processGetall(response: HttpResponseBase): Observable<UserVm[]> {

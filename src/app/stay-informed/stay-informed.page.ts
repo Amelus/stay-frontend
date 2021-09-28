@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
 import {CardClient} from "../api/card/CardClient";
 import {CardsEditComponent} from "../components/cards/cards-edit/cards-edit.component";
 import {CardsCreateComponent} from "../components/cards/cards-create/cards-create.component";
+import {UserVmRole} from "../api/user/UserVmRole";
 
 @Component({
   selector: 'app-stay-informed',
@@ -16,7 +17,7 @@ import {CardsCreateComponent} from "../components/cards/cards-create/cards-creat
 })
 export class StayInformedPage implements OnInit {
   currentUser: UserVm;
-  isAdmin: boolean;
+  isAdmin: boolean = false;
   isEdit: boolean;
 
   colorEditButtonOff: string;
@@ -45,7 +46,10 @@ export class StayInformedPage implements OnInit {
 
   private initUser() {
     this.currentUser = this.userClient.getSessionUser();
-    this.isAdmin = this.currentUser.username === 'admin1'; // TODO: need to be moved somewhere else
+    if (this.currentUser !== null) {
+      this.isAdmin = this.currentUser.role === UserVmRole.Admin;
+    }
+
     this.cards = this.cardClient.testGetUserCards();
   }
 

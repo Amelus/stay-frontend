@@ -17,15 +17,15 @@
             <div class="item-inner">
               <div class="input-wrapper">
                 <slot>
-                  <ion-label position="stacked">Username</ion-label>
+                  <ion-label position="stacked">E-Mail</ion-label>
                   <ion-input class="input" autocomplete="true" required="true" formControlName="username"></ion-input>
                   <ng-container *ngIf="form.get('username').dirty && form.get('username').errors">
                     <div class="error">
                       <ng-container *ngIf="form.get('username').hasError('required')">
-                        Username ist ein Pflichtfeld
+                        E-Mail ist ein Pflichtfeld
                       </ng-container>
-                      <ng-container *ngIf="form.get('username').hasError('minlength')">
-                        Der Username ist mindestens 6 Zeichen lang
+                      <ng-container *ngIf="form.get('username').hasError('emailValid')">
+                        Bitte geben sie eine gültige E-Mail ein
                       </ng-container>
                     </div>
                   </ng-container>

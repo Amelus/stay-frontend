@@ -1,7 +1,6 @@
 import {CardVm} from "./CardVm";
 import {Injectable} from "@angular/core";
 import {UserClient} from "../user/UserClient";
-import {Observable, of as _observableOf, Subscription} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +11,7 @@ export class CardClient { // TODO: add more functions and attributes later
 
   public testGetUserCards(): CardVm[] {
     // TODO: data will be loaded from the database later
-    if (this.userClient.getSessionUser() === null) {
-      let cards: CardVm[] = [];
-      return cards;
-    } else if (localStorage.getItem('cards') === null) {
+    if (localStorage.getItem('cards') === null) {
       let cards: CardVm[] = [];
 
       cards.push(new CardVm({

@@ -19,8 +19,8 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
   {
-    path: 'start-page',
-    loadChildren: () => import('./start-page/start-page.module').then(m => m.StartPagePageModule)
+    path: 'start',
+    loadChildren: () => import('./start/start.module').then(m => m.StartPageModule)
   },
   {
     path: 'stay-informed',

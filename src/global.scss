@@ -67,11 +67,30 @@
   display: block;
 }
 
-.activation-component .modal-wrapper {
-  height: 168px;
-  position: absolute;
+.activation-component {
+  --height: auto;
+
+  .modal-wrapper {
+    width: 288px;
+
+    .ion-page {
+      position: relative;
+      contain: content;
+      max-height: 300px;
+
+      .modal-content {
+        overflow: auto;
+      }
+    }
+  }
+}
+
+
+.card-edit-selection-modal-css .modal-wrapper {
   display: block;
-  width: 288px;
+  position: absolute;
+  height: 70%;
+  width: 60%;
 }
 
 .card-edit-selection-modal-css .modal-wrapper {

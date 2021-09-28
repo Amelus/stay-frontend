@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Profil bearbeiten</ion-title>
-    <ion-button slot="end" fill="clear" (click)="logout()">Ausloggen</ion-button>
+    <ion-button (click)="presentLogoutAlert()" fill="clear" slot="end">Ausloggen</ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -12,8 +12,47 @@
 
   <div class="content-outer">
     <div class="content-inner">
-      <ion-title size="large">{{currentUser.firstName}} {{currentUser.lastName}}</ion-title>
 
+      <ion-row
+        class="ion-padding ios ion-align-items-center item-label item-label-stacked item ion-focusable ion-untouched ion-pristine ion-invalid hydrated item-interactive item-input">
+        <div class="item-native it-nat" style="margin: auto;">
+          <div class="item-inner">
+            <div class="input-wrapper">
+              <slot>
+                <ion-avatar>
+                  <img src="/assets/avatar.svg" style="display: block">
+                </ion-avatar>
+              </slot>
+            </div>
+          </div>
+        </div>
+      </ion-row>
+
+      <div style="text-align: center">
+        <ion-title>{{currentUser.firstName}} {{currentUser.lastName}}</ion-title>
+        <ion-label>{{currentUser.username}}</ion-label>
+      </div>
+      <!--
+            <div class="seperator">
+              <ion-title size="small" style="margin-bottom: inherit">Persönliche Daten</ion-title>
+              <ion-item class=" ion-align-items-center ">
+                <ion-label position="floating">PartnerID</ion-label>
+                <ion-input minlength="1" required="false" type="partnerId" formControlName="partnerId"></ion-input>
+              </ion-item>
+              <ion-item class=" ion-align-items-center ">
+                <ion-label position="floating">Telefonnummer</ion-label>
+                <ion-input minlength="8" required="false" type="phoneNumber" formControlName="phoneNumber"></ion-input>
+              </ion-item>
+              <ion-item class=" ion-align-items-center ">
+                <ion-label position="floating">Geburtsdatum</ion-label>
+                <ion-input required="false" type="birthday" formControlName="birthday"></ion-input>
+              </ion-item>
+              <ion-item class=" ion-align-items-center ">
+                <ion-label position="floating">Link zum eigenen Stay</ion-label>
+                <ion-input required="false" type="stayLink" formControlName="stayLink"></ion-input>
+              </ion-item>
+            </div>
+      -->
       <div class="seperator">
         <ion-title size="small">Passwort ändern</ion-title>
       </div>

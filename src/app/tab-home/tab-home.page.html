@@ -10,7 +10,7 @@
           <p class="p-center-h-v">stay informed</p>
         </a>
       </div>
-      <div class="upgrade-button">
+      <div *ngIf="needsUpgrade" class="upgrade-button">
         <ion-button (click)="showActivation()" slot="secondary">App freischalten</ion-button>
       </div>
     </div>
