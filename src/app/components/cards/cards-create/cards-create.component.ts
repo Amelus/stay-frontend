@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {ModalController} from "@ionic/angular";
+import {ModalController, ToastController} from "@ionic/angular";
 import {UserClient} from "../../../api/user/UserClient";
 import {CardClient} from "../../../api/card/CardClient";
 import {Router} from "@angular/router";
@@ -16,6 +16,7 @@ export class CardsCreateComponent implements OnInit {
   form: FormGroup;
 
   constructor(public modalController: ModalController,
+              public toastController: ToastController,
               private formBuilder: FormBuilder,
               private userClient: UserClient,
               private cardClient: CardClient,
@@ -26,7 +27,7 @@ export class CardsCreateComponent implements OnInit {
     this.initForm();
   }
 
-  onSubmit2() {
+  onSubmit() {
     let cardLocal: CardVm = new CardVm(this.form.value);
 
     cardLocal.id = Math.floor(Math.random() * 100000); // TODO: solve this later with randomInt or somehow other way
@@ -34,6 +35,8 @@ export class CardsCreateComponent implements OnInit {
     this.cardClient.testAddOneCard(cardLocal);
 
     this.dismiss();
+
+    this.presentToast();
   }
 
   public async dismiss() {
@@ -49,5 +52,14 @@ export class CardsCreateComponent implements OnInit {
       title: [''],
       content: [''],
     })
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Karte erfolgreich erstellt!',
+      duration: 2000
+    });
+
+    toast.present();
   }
 }

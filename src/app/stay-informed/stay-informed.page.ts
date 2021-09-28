@@ -3,7 +3,7 @@ import {ApplicationRef, Component, OnInit} from '@angular/core';
 import {UserVm} from "../api/user/UserVm";
 import {UserClient} from "../api/user/UserClient";
 import {CardVm} from "../api/card/CardVm";
-import {AlertController, ModalController} from "@ionic/angular";
+import {AlertController, ModalController, ToastController} from "@ionic/angular";
 import {Router} from "@angular/router";
 import {CardClient} from "../api/card/CardClient";
 import {CardsEditComponent} from "../components/cards/cards-edit/cards-edit.component";
@@ -27,6 +27,7 @@ export class StayInformedPage implements OnInit {
   cards: CardVm[];
 
   constructor(public modalController: ModalController,
+              public toastController: ToastController,
               private userClient: UserClient,
               private cardClient: CardClient,
               private router: Router,
@@ -121,6 +122,7 @@ export class StayInformedPage implements OnInit {
             handler: () => {
               this.cardClient.testRemoveOneCard(card);
               this.cards = this.cardClient.testGetUserCards();
+              this.presentToast();
             }
           }
         ]
@@ -128,5 +130,14 @@ export class StayInformedPage implements OnInit {
 
       await alert.present();
     }
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Karte erfolgreich gelöscht!',
+      duration: 2000
+    });
+
+    toast.present();
   }
 }
