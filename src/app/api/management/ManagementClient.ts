@@ -10,6 +10,7 @@ export class ManagementClient { // TODO: add more functions and attributes later
 
   constructor(private userClient: UserClient) { }
 
+  // TODO: move all functionality to the UserClient!! Delete ManagementVm and use UserVm.
   public testGetUserManagement(): ManagementVm[] {
     // TODO: data will be loaded from the database later
     if (localStorage.getItem('managements') === null) {

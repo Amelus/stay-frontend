@@ -1,37 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import {ModalController, ToastController} from "@ionic/angular";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup} from "@angular/forms";
 import {UserClient} from "../../../api/user/UserClient";
-import {Router} from "@angular/router";
-import {CardVm} from "../../../api/card/CardVm";
-import {CardClient} from "../../../api/card/CardClient";
+import {ManagementClient} from "../../../api/management/ManagementClient";
+import {UserVmRole} from "../../../api/user/UserVmRole";
+import {ManagementVm} from "../../../api/management/ManagementVm";
 
 @Component({
-  selector: 'app-cards-edit',
-  templateUrl: './cards-edit.component.html',
-  styleUrls: ['./cards-edit.component.scss'],
+  selector: 'app-management-edit',
+  templateUrl: './management-edit.component.html',
+  styleUrls: ['./management-edit.component.scss'],
 })
-export class CardsEditComponent implements OnInit {
+export class ManagementEditComponent implements OnInit {
 
   form: FormGroup;
-  card: CardVm;
+  management: ManagementVm;
+  userRoles = UserVmRole;
 
   constructor(public modalController: ModalController,
               public toastController: ToastController,
               private formBuilder: FormBuilder,
               private userClient: UserClient,
-              private router: Router) {
-  }
+              private managementClient: ManagementClient) { }
 
   ngOnInit() {
     this.initForm();
   }
 
   onSubmit() {
-    this.card.srcpath = this.form.controls['srcpath'].value;
-    this.card.subtitle = this.form.controls['subtitle'].value;
-    this.card.title = this.form.controls['title'].value;
-    this.card.content = this.form.controls['content'].value;
+    this.management.forename = this.form.controls['forename'].value;
+    this.management.surename = this.form.controls['surename'].value;
+    this.management.role = this.form.controls['role'].value;
+    this.management.email = this.form.controls['email'].value;
 
     this.dismiss();
 
@@ -46,10 +46,10 @@ export class CardsEditComponent implements OnInit {
 
   private initForm() {
     this.form = this.formBuilder.group({
-      srcpath: [this.card.srcpath],
-      subtitle: [this.card.subtitle],
-      title: [this.card.title],
-      content: [this.card.content],
+      forename: [this.management.forename],
+      surename: [this.management.surename],
+      role: [this.management.role],
+      email: [this.management.email],
     })
   }
 
@@ -69,4 +69,5 @@ export class CardsEditComponent implements OnInit {
 
     toast.present();
   }
+
 }

@@ -414,11 +414,16 @@ export class UserClient {
       sessionUser.activated = true;
       localStorage.removeItem('user');
       localStorage.setItem('user', JSON.stringify(sessionUser));
-      return _observableOf("SUCCESS")
+      return _observableOf("SUCCESS");
     }
 
     let err: ApiException = new ApiException({error: 'User not logged in'});
     return _observableThrow(err);
+  }
+
+  // FIXME: only for testing only!
+  protected testGetAll(): UserVm[] {
+    return []; // TODO: take the funcionalities from ManagementClient and move it to here!
   }
 
   protected processGetall(response: HttpResponseBase): Observable<UserVm[]> {
