@@ -102,8 +102,8 @@ if __name__ == '__main__':
 
         str_arr = '[]' if attr_array else ''
         str_question = '?' if attr_nullable else ''
-        str_null = ' | null' if attr_nullable else ''
-        if attr_type == 'string' or attr_type == 'number' or attr_type == 'boolean':
+        str_null = (' | null' if attr_type != 'boolean' else ' | false') if attr_nullable else ''
+        if attr_type in ['string', 'number', 'boolean', 'any']:
             var_variables += f'\n  {attr_name}{str_question}: {attr_type}{str_arr}{str_null};'
             var_init_vals += f'\n      this.{attr_name} = data.{attr_name} !== undefined ? data.{attr_name} : null as any;'
             var_to_vals += f'\n    data.{attr_name} = this.{attr_name} !== undefined ? this.{attr_name} : null as any;'
@@ -122,6 +122,9 @@ if __name__ == '__main__':
             var_variables += f'\n  {attr_name}{str_question}: {attr_class}{str_arr}{str_null};'
             var_init_vals += f'\n      this.{attr_name} = data.{attr_name} ? {attr_class}.fromJS(data.{attr_name}) : new {attr_class}();'
             var_to_vals += f'\n    data.{attr_name} = this.{attr_name} ? this.{attr_name}.toJSON() : null as any;'
+        else:
+            print(f'attr_type "{attr_type}" is not supported, need implementation?')
+            assert False
         
     for attr_class, attr_path in sorted(d_class_to_path.items()):
         var_ivm_imports += f'import {{{attr_class}}} from "../{root_path_prefix}/{attr_path}/{attr_class}";\n'

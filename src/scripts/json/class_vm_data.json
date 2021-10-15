@@ -2,45 +2,153 @@
   "ExampleVm": {
     "folder": "example",
     "attributes": [
-      {"name":  "foo1", "type": "string", "nullable":  false, "array":  false},
-      {"name":  "foo4", "type": "string", "nullable":  true, "array":  true},
-      {"name":  "bar2", "type": "number", "nullable":  false, "array":  true},
-      {"name":  "bar4", "type": "number", "nullable":  true, "array":  true},
-      {"name":  "taz2", "type": "boolean", "nullable":  false, "array":  true},
-      {"name":  "taz3", "type": "boolean", "nullable":  true, "array":  false},
-      {"name":  "qyu1", "type": "Date", "nullable":  false, "array":  false},
-      {"name":  "qyu3", "type": "Date", "nullable":  true, "array":  false},
-      {"name":  "qyu4", "type": "Date", "nullable":  true, "array":  true},
-      {"name":  "bla1", "type": "class", "nullable":  false, "array":  false, "class":  "UserVm", "path":  "user"},
-      {"name":  "bla3", "type": "class", "nullable":  true, "array":  false, "class":  "UserVm", "path":  "user"}
+      {"name": "foo1", "type": "string", "nullable": false, "array": false},
+      {"name": "foo4", "type": "string", "nullable": true, "array": true},
+      {"name": "bar2", "type": "number", "nullable": false, "array": true},
+      {"name": "bar4", "type": "number", "nullable": true, "array": true},
+      {"name": "taz2", "type": "boolean", "nullable": false, "array": true},
+      {"name": "taz3", "type": "boolean", "nullable": true, "array": false},
+      {"name": "qyu1", "type": "Date", "nullable": false, "array": false},
+      {"name": "qyu3", "type": "Date", "nullable": true, "array": false},
+      {"name": "qyu4", "type": "Date", "nullable": true, "array": true},
+      {"name": "bla1", "type": "class", "nullable": false, "array": false, "class": "UserVm", "path": "user"},
+      {"name": "bla3", "type": "class", "nullable": true, "array": false, "class": "UserVm", "path": "user"}
     ]
   },
   "ExampleVm2": {
     "folder": "example2/deeper",
     "attributes": [
-      {"name":  "foo1", "type": "string", "nullable":  false, "array":  false},
-      {"name":  "foo2", "type": "string", "nullable":  false, "array":  true},
-      {"name":  "foo3", "type": "string", "nullable":  true, "array":  false},
-      {"name":  "foo4", "type": "string", "nullable":  true, "array":  true},
-      {"name":  "bar4", "type": "number", "nullable":  true, "array":  true},
-      {"name":  "taz1", "type": "boolean", "nullable":  false, "array":  false},
-      {"name":  "taz2", "type": "boolean", "nullable":  false, "array":  true},
-      {"name":  "qyu4", "type": "Date", "nullable":  true, "array":  true},
-      {"name":  "bla1", "type": "class", "nullable":  false, "array":  false, "class":  "ExampleVm", "path":  "example"},
-      {"name":  "bla2", "type": "class", "nullable":  false, "array":  true, "class":  "ExampleVm", "path":  "example"},
-      {"name":  "bla4", "type": "class", "nullable":  true, "array":  true, "class":  "ExampleVm", "path":  "example"},
-      {"name":  "hah1", "type": "class", "nullable":  false, "array":  true, "class":  "UserVm", "path":  "user"},
-      {"name":  "hah3", "type": "class", "nullable":  true, "array":  true, "class":  "UserVm", "path":  "user"}
+      {"name": "foo1", "type": "string", "nullable": false, "array": false},
+      {"name": "foo2", "type": "string", "nullable": false, "array": true},
+      {"name": "foo3", "type": "string", "nullable": true, "array": false},
+      {"name": "foo4", "type": "string", "nullable": true, "array": true},
+      {"name": "bar4", "type": "number", "nullable": true, "array": true},
+      {"name": "taz1", "type": "boolean", "nullable": false, "array": false},
+      {"name": "taz2", "type": "boolean", "nullable": false, "array": true},
+      {"name": "qyu4", "type": "Date", "nullable": true, "array": true},
+      {"name": "bla1", "type": "class", "nullable": false, "array": false, "class": "ExampleVm", "path": "example"},
+      {"name": "bla2", "type": "class", "nullable": false, "array": true, "class": "ExampleVm", "path": "example"},
+      {"name": "bla4", "type": "class", "nullable": true, "array": true, "class": "ExampleVm", "path": "example"},
+      {"name": "hah1", "type": "class", "nullable": false, "array": true, "class": "UserVm", "path": "user"},
+      {"name": "hah3", "type": "class", "nullable": true, "array": true, "class": "UserVm", "path": "user"}
     ]
   },
   "ExampleVm3Dups": {
     "folder": "example3",
     "attributes": [
-      {"name":  "foo1", "type": "string", "nullable":  false, "array":  false},
-      {"name":  "foo2", "type": "string", "nullable":  false, "array":  true},
-      {"name":  "foo2", "type": "string", "nullable":  true, "array":  false},
-      {"name":  "foo1", "type": "string", "nullable":  true, "array":  true},
-      {"name":  "foo1", "type": "number", "nullable":  true, "array":  true}
+      {"name": "foo1", "type": "string", "nullable": false, "array": false},
+      {"name": "foo2", "type": "string", "nullable": false, "array": true},
+      {"name": "foo2", "type": "string", "nullable": true, "array": false},
+      {"name": "foo1", "type": "string", "nullable": true, "array": true},
+      {"name": "foo1", "type": "number", "nullable": true, "array": true}
+    ]
+  },
+  "CardVm": {
+    "folder": "card",
+    "attributes": [
+      {"name": "srcpath", "type": "string", "nullable": true, "array": false},
+      {"name": "subtitle", "type": "string", "nullable": true, "array": false},
+      {"name": "title", "type": "string", "nullable": true, "array": false},
+      {"name": "content", "type": "string", "nullable": true, "array": false},
+      {"name": "id", "type": "number", "nullable": true, "array": false}
+    ]
+  },
+  "LoginResponseVm": {
+    "folder": "login",
+    "attributes": [
+      {"name": "token", "type": "string", "nullable": false, "array": false},
+      {"name": "expiresIn", "type": "string", "nullable": false, "array": false},
+      {"name": "user", "type": "class", "nullable": true, "array": false, "class": "UserVm", "path": "user"}
+    ]
+  },
+  "LoginVm": {
+    "folder": "login",
+    "attributes": [
+      {"name": "username", "type": "string", "nullable": false, "array": false},
+      {"name": "password", "type": "string", "nullable": false, "array": false}
+    ]
+  },
+  "RegisterVm": {
+    "folder": "register",
+    "attributes": [
+      {"name": "activationCode", "type": "string", "nullable": false, "array": false},
+      {"name": "email", "type": "string", "nullable": false, "array": false},
+      {"name": "username", "type": "string", "nullable": false, "array": false},
+      {"name": "password", "type": "string", "nullable": false, "array": false},
+      {"name": "firstName", "type": "string", "nullable": true, "array": false},
+      {"name": "lastName", "type": "string", "nullable": true, "array": false}
+    ]
+  },
+  "ApiException": {
+    "folder": "shared/exception",
+    "attributes": [
+      {"name": "statusCode", "type": "number", "nullable": true, "array": false},
+      {"name": "message", "type": "string", "nullable": true, "array": false},
+      {"name": "status", "type": "string", "nullable": true, "array": false},
+      {"name": "error", "type": "string", "nullable": true, "array": false},
+      {"name": "errors", "type": "any", "nullable": true, "array": false},
+      {"name": "timestamp", "type": "string", "nullable": true, "array": false},
+      {"name": "path", "type": "string", "nullable": true, "array": false}
+    ]
+  },
+  "TodoParams": {
+    "folder": "task",
+    "attributes": [
+      {"name": "creator", "type": "string", "nullable": true, "array": false},
+      {"name": "assignee", "type": "string", "nullable": false, "array": false},
+      {"name": "title", "type": "string", "nullable": false, "array": false},
+      {"name": "content", "type": "string", "nullable": false, "array": false},
+      {"name": "dueDate", "type": "Date", "nullable": false, "array": false},
+      {"name": "status", "type": "class", "nullable": true, "array": false, "class": "TodoParamsStatus", "path": "task"}
+    ]
+  },
+  "TodoVm": {
+    "folder": "task",
+    "attributes": [
+      {"name": "createdAt", "type": "Date", "nullable": true, "array": false},
+      {"name": "updatedAt", "type": "Date", "nullable": true, "array": false},
+      {"name": "id", "type": "string", "nullable": true, "array": false},
+      {"name": "creator", "type": "string", "nullable": false, "array": false},
+      {"name": "assignee", "type": "string", "nullable": false, "array": false},
+      {"name": "title", "type": "string", "nullable": false, "array": false},
+      {"name": "content", "type": "string", "nullable": false, "array": false},
+      {"name": "status", "type": "class", "nullable": false, "array": false, "class": "TodoVmStatus", "path": "task"},
+      {"name": "dueDate", "type": "Date", "nullable": false, "array": false},
+      {"name": "isCompleted", "type": "boolean", "nullable": true, "array": false},
+      {"name": "isChecked", "type": "boolean", "nullable": true, "array": false}
+    ]
+  },
+  "UpdateUserResponseVm": {
+    "folder": "user",
+    "attributes": [
+      {"name": "imageUrl", "type": "string", "nullable": true, "array": false},
+      {"name": "role", "type": "class", "nullable": true, "array": false, "class": "UserVmRole", "path": "user"},
+      {"name": "status", "type": "string", "nullable": false, "array": false, "class": "UpdateUserStatus", "path": "user"}
+    ]
+  },
+  "UpdateUserVm": {
+    "folder": "automatic/user",
+    "attributes": [
+      {"name": "oldPassword", "type": "string", "nullable": true, "array": false},
+      {"name": "newPassword", "type": "string", "nullable": true, "array": false},
+      {"name": "confirmPassword", "type": "string", "nullable": true, "array": false},
+      {"name": "imageUrl", "type": "string", "nullable": true, "array": false},
+      {"name": "upgradeCode", "type": "string", "nullable": true, "array": false}
+    ]
+  },
+  "UserVm": {
+    "folder": "automatic/user",
+    "attributes": [
+      {"name": "createdAt", "type": "Date", "nullable": true, "array": false},
+      {"name": "updatedAt", "type": "Date", "nullable": true, "array": false},
+      {"name": "id", "type": "string", "nullable": true, "array": false},
+      {"name": "username", "type": "string", "nullable": true, "array": false},
+      {"name": "firstName", "type": "string", "nullable": true, "array": false},
+      {"name": "lastName", "type": "string", "nullable": true, "array": false},
+      {"name": "fullName", "type": "string", "nullable": true, "array": false},
+      {"name": "role", "type": "class", "nullable": true, "array": false, "class":  "UserVmRole", "path":  "user"},
+      {"name": "imageUrl", "type": "string", "nullable": true, "array": false},
+      {"name": "activated", "type": "boolean", "nullable": true, "array": false}
     ]
   }
 }
