@@ -1,0 +1,46 @@
+{
+  "ExampleVm": {
+    "folder": "example",
+    "attributes": [
+      {"name":  "foo1", "type": "string", "nullable":  false, "array":  false},
+      {"name":  "foo4", "type": "string", "nullable":  true, "array":  true},
+      {"name":  "bar2", "type": "number", "nullable":  false, "array":  true},
+      {"name":  "bar4", "type": "number", "nullable":  true, "array":  true},
+      {"name":  "taz2", "type": "boolean", "nullable":  false, "array":  true},
+      {"name":  "taz3", "type": "boolean", "nullable":  true, "array":  false},
+      {"name":  "qyu1", "type": "Date", "nullable":  false, "array":  false},
+      {"name":  "qyu3", "type": "Date", "nullable":  true, "array":  false},
+      {"name":  "qyu4", "type": "Date", "nullable":  true, "array":  true},
+      {"name":  "bla1", "type": "class", "nullable":  false, "array":  false, "class":  "UserVm", "path":  "user"},
+      {"name":  "bla3", "type": "class", "nullable":  true, "array":  false, "class":  "UserVm", "path":  "user"}
+    ]
+  },
+  "ExampleVm2": {
+    "folder": "example2/deeper",
+    "attributes": [
+      {"name":  "foo1", "type": "string", "nullable":  false, "array":  false},
+      {"name":  "foo2", "type": "string", "nullable":  false, "array":  true},
+      {"name":  "foo3", "type": "string", "nullable":  true, "array":  false},
+      {"name":  "foo4", "type": "string", "nullable":  true, "array":  true},
+      {"name":  "bar4", "type": "number", "nullable":  true, "array":  true},
+      {"name":  "taz1", "type": "boolean", "nullable":  false, "array":  false},
+      {"name":  "taz2", "type": "boolean", "nullable":  false, "array":  true},
+      {"name":  "qyu4", "type": "Date", "nullable":  true, "array":  true},
+      {"name":  "bla1", "type": "class", "nullable":  false, "array":  false, "class":  "ExampleVm", "path":  "example"},
+      {"name":  "bla2", "type": "class", "nullable":  false, "array":  true, "class":  "ExampleVm", "path":  "example"},
+      {"name":  "bla4", "type": "class", "nullable":  true, "array":  true, "class":  "ExampleVm", "path":  "example"},
+      {"name":  "hah1", "type": "class", "nullable":  false, "array":  true, "class":  "UserVm", "path":  "user"},
+      {"name":  "hah3", "type": "class", "nullable":  true, "array":  true, "class":  "UserVm", "path":  "user"}
+    ]
+  },
+  "ExampleVm3Dups": {
+    "folder": "example3",
+    "attributes": [
+      {"name":  "foo1", "type": "string", "nullable":  false, "array":  false},
+      {"name":  "foo2", "type": "string", "nullable":  false, "array":  true},
+      {"name":  "foo2", "type": "string", "nullable":  true, "array":  false},
+      {"name":  "foo1", "type": "string", "nullable":  true, "array":  true},
+      {"name":  "foo1", "type": "number", "nullable":  true, "array":  true}
+    ]
+  }
+}
