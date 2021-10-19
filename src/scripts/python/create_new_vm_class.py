@@ -36,17 +36,19 @@ if __name__ == '__main__':
     if len(argv) < 2:
         print_usage()
         sys.exit(-1)
-    
+
     vm_name = argv[1]
 
     DIR_PATH_TS = os.path.join(PATH_ROOT_DIR, '../typescript')
     assert os.path.exists(DIR_PATH_TS)
+    DIR_PATH_TS_INTERFACE = os.path.join(DIR_PATH_TS, 'interface')
+    assert os.path.exists(DIR_PATH_TS_INTERFACE)
     DIR_PATH_JSON = os.path.join(PATH_ROOT_DIR, '../json')
     assert os.path.exists(DIR_PATH_JSON)
     DIR_PATH_API = os.path.join(PATH_ROOT_DIR, '../../app/api')
     assert os.path.exists(DIR_PATH_API)
 
-    FILE_PATH_IVM_TEMP = os.path.join(DIR_PATH_TS, 'ITemplateClassVm.ts')
+    FILE_PATH_IVM_TEMP = os.path.join(DIR_PATH_TS_INTERFACE, 'ITemplateClassVm.ts')
     assert os.path.exists(FILE_PATH_IVM_TEMP)
     FILE_PATH_VM_TEMP = os.path.join(DIR_PATH_TS, 'TemplateClassVm.ts')
     assert os.path.exists(FILE_PATH_VM_TEMP)
@@ -125,14 +127,14 @@ if __name__ == '__main__':
         else:
             print(f'attr_type "{attr_type}" is not supported, need implementation?')
             assert False
-        
+
     for attr_class, attr_path in sorted(d_class_to_path.items()):
         var_ivm_imports += f'import {{{attr_class}}} from "../{root_path_prefix}/{attr_path}/{attr_class}";\n'
         var_vm_imports += f'import {{{attr_class}}} from "{root_path_prefix}/{attr_path}/{attr_class}";\n'
 
     DIR_PATH_VM = os.path.join(DIR_PATH_API, vm_folder)
     DIR_PATH_IVM = os.path.join(DIR_PATH_VM, 'interface')
-    
+
     if not os.path.exists(DIR_PATH_VM):
         os.makedirs(DIR_PATH_VM)
     if not os.path.exists(DIR_PATH_IVM):
