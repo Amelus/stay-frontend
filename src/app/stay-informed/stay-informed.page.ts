@@ -64,7 +64,7 @@ export class StayInformedPage implements OnInit {
     }
   }
 
-  async onAddCard() {
+  async onCreateCard() {
     if (this.currentUser === null) {
       await this.router.navigate(['/login']);
     } else {

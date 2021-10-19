@@ -6,6 +6,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {CardsEditComponent} from "./cards/cards-edit/cards-edit.component";
 import {CardsCreateComponent} from "./cards/cards-create/cards-create.component";
+import {ManagementEditComponent} from "./management/management-edit/management-edit.component";
+import {ManagementCreateComponent} from "./management/management-create/management-create.component";
 
 @NgModule({
   imports: [
@@ -19,16 +21,22 @@ import {CardsCreateComponent} from "./cards/cards-create/cards-create.component"
     ActivationComponent,
     CardsEditComponent,
     CardsCreateComponent,
+    ManagementEditComponent,
+    ManagementCreateComponent,
   ],
   declarations: [
     ActivationComponent,
     CardsEditComponent,
     CardsCreateComponent,
+    ManagementEditComponent,
+    ManagementCreateComponent,
   ],
   entryComponents: [
     ActivationComponent,
     CardsEditComponent,
     CardsCreateComponent,
+    ManagementEditComponent,
+    ManagementCreateComponent,
   ]
 })
 export class ComponentModule {

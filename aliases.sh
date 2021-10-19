@@ -7,6 +7,7 @@ PYTHON_INTERPRETER='/usr/bin/python3'
 alias createvm='${PYTHON_INTERPRETER} ${SCRIPT_DIR}/src/scripts/python/create_new_vm_class.py'
 
 alias start='npm start'
+alias startglob='ng serve --host 0.0.0.0 --port 8080'
 alias status='git status'
 alias gst='git status'
 alias fetch='git fetch --all'

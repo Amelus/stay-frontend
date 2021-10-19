@@ -1,5 +1,5 @@
 <ion-content class="ion-align-items-center ion-padding">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form [formGroup]="form">
     <div class="content-outer">
       <div class="content-inner">
 
@@ -16,7 +16,7 @@
         <ion-input class="input-field-style" formControlName="content"></ion-input>
 
         <ion-buttons>
-          <ion-button type="submit">Submit</ion-button>
+          <ion-button type="submit" (click)="onSubmit()">Submit Edit</ion-button>
           <ion-button fill="clear" (click)="dismiss()">Cancel</ion-button>
         </ion-buttons>
 

@@ -1,0 +1,29 @@
+<ion-content class="ion-align-items-center ion-padding">
+  <form [formGroup]="form">
+    <div class="content-outer">
+      <div class="content-inner">
+
+        <ion-label>forename:</ion-label>
+        <ion-input class="input-field-style" formControlName="forename"></ion-input>
+
+        <ion-label>surename:</ion-label>
+        <ion-input class="input-field-style" formControlName="surename"></ion-input>
+
+        <ion-label>role:</ion-label>
+        <ion-select value="{{userRoles.User}}" okText="Okay" cancelText="Dismiss" formControlName="role">
+          <ion-select-option value="{{userRoles.User}}">{{userRoles.User}}</ion-select-option>
+          <ion-select-option value="{{userRoles.Partner}}">{{userRoles.Partner}}</ion-select-option>
+        </ion-select>
+
+        <ion-label>email:</ion-label>
+        <ion-input class="input-field-style" formControlName="email"></ion-input>
+
+        <ion-buttons>
+          <ion-button type="submit" (click)="onSubmit()">Submit Add</ion-button>
+          <ion-button fill="clear" (click)="dismiss()">Cancel</ion-button>
+        </ion-buttons>
+
+      </div>
+    </div>
+  </form>
+</ion-content>

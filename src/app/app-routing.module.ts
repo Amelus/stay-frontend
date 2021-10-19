@@ -29,6 +29,10 @@ const routes: Routes = [
   {
     path: 'appointment-selection',
     loadChildren: () => import('./appointment/appointment-selection/appointment-selection.module').then(m => m.AppointmentSelectionPageModule)
+  },
+  {
+    path: 'management',
+    loadChildren: () => import('./management/management.module').then( m => m.ManagementPageModule)
   }
 
 ];
