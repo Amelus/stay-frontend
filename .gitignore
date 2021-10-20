@@ -35,3 +35,6 @@ npm-debug.log*
 *.css
 *.css.map
 /src/app/tab-home/tab-home.page.scss
+
+/src/app/api/example
+/src/app/api/example2

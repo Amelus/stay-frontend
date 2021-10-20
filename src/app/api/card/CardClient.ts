@@ -6,6 +6,7 @@ import {UserClient} from "../user/UserClient";
   providedIn: 'root'
 })
 export class CardClient { // TODO: add more functions and attributes later
+
   constructor(private userClient: UserClient) {
   }
 
@@ -50,7 +51,7 @@ export class CardClient { // TODO: add more functions and attributes later
     let cards: CardVm[] = JSON.parse(localStorage.getItem('cards'))
       .map(card => CardVm.fromJS(card));
 
-    cards = cards.filter(cardIter => cardIter.id !== card.id)
+    cards = cards.filter((cardIter: CardVm) => !cardIter.equal(card))
 
     localStorage.setItem('cards', JSON.stringify(cards));
   }

@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Management</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!--<ion-content class="outer">-->
+<ion-content>
+  <div class="main-div">
+    <ion-grid class="grid-class">
+
+      <ion-item class="header-row-class">
+        <ion-col class="column1-class">
+          Name
+        </ion-col>
+        <ion-col class="column2-class">
+          Role
+        </ion-col>
+        <ion-col class="column3-class">
+          E-Mail
+        </ion-col>
+
+        <ion-col class="column4-class">
+
+        </ion-col>
+
+        <ion-col class="column5-class">
+
+        </ion-col>
+      </ion-item>
+
+      <div *ngFor="let management of managements;">
+        <ion-item class="row-class">
+          <ion-col class="column1-class">
+            {{management.forename}} {{management.surename}}
+          </ion-col>
+          <ion-col class="column2-class">
+            {{management.role}}
+          </ion-col>
+          <ion-col class="column3-class">
+            {{management.email}}
+          </ion-col>
+          <ion-col class="column4-class">
+            <ion-button (click)="onEdit(management)">
+              <ion-icon name="create-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col class="column5-class">
+            <ion-button (click)="onDelete(management)" color="danger">
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-item>
+      </div>
+
+      <ion-row class="footer-row-class"></ion-row>
+
+    </ion-grid>
+
+  </div>
+
+  <ion-fab horizontal="end" slot="fixed" vertical="bottom">
+    <ion-fab-button (click)="onCreate()" style="margin-right: 10px;">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

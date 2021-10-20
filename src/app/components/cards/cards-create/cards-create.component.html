@@ -1,65 +1,25 @@
 <ion-content class="ion-align-items-center ion-padding">
   <form [formGroup]="form">
     <div class="content-outer">
-      <div>
-        <ion-list lines="full" class="ion-no-margin">
+      <div class="content-inner">
 
-          <ion-row class="ion-row-own">
-            <div class="item-native it-nat">
-              <div>
-                <!--              <div class="item-inner">-->
-                <div>
-                  <!--                <div class="input-wrapper">-->
-                  <div>
-                    <ion-label class="text-label-style">srcpath: </ion-label>
-                    <ion-input class="input-field-style" formControlName="srcpath"></ion-input>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ion-row>
+        <ion-label class="text-label-style">srcpath:</ion-label>
+        <ion-input class="input-field-style" formControlName="srcpath"></ion-input>
 
-          <ion-row class="ion-row-own">
-            <div class="item-native it-nat">
-              <div class="item-inner">
-                <div class="input-wrapper">
-                  <div>
-                    <ion-label>subtitle: </ion-label>
-                    <ion-input class="input-field-style" formControlName="subtitle"></ion-input>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ion-row>
+        <ion-label>subtitle:</ion-label>
+        <ion-input class="input-field-style" formControlName="subtitle"></ion-input>
 
-          <ion-row class="ion-row-own">
-            <div class="item-native it-nat">
-              <div class="item-inner">
-                <div class="input-wrapper">
-                  <div>
-                    <ion-label>title: </ion-label>
-                    <ion-input class="input-field-style" formControlName="title"></ion-input>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ion-row>
+        <ion-label>title:</ion-label>
+        <ion-input class="input-field-style" formControlName="title"></ion-input>
 
-          <ion-row class="ion-row-own">
-            <div class="item-native it-nat">
-              <div class="item-inner">
-                <div class="input-wrapper">
-                  <div>
-                    <ion-label>content: </ion-label>
-                    <ion-input class="input-field-style" formControlName="content"></ion-input>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ion-row>
+        <ion-label>content:</ion-label>
+        <ion-input class="input-field-style" formControlName="content"></ion-input>
 
-        </ion-list>
-        <ion-button type="submit" (click)="onSubmit2()">Submit Add</ion-button>
+        <ion-buttons>
+          <ion-button (click)="onSubmit()" type="submit">Submit Add</ion-button>
+          <ion-button (click)="dismiss()" fill="clear">Cancel</ion-button>
+        </ion-buttons>
+
       </div>
     </div>
   </form>

@@ -21,7 +21,7 @@ export class TabsPage implements OnInit {
     this.initUser();
   }
 
-  initUser() {
+  initUser(): void {
     this.currentUser = this.userClient.getSessionUser();
     if (this.currentUser !== null) {
       this.isAdmin = this.currentUser.role === UserVmRole.Admin;

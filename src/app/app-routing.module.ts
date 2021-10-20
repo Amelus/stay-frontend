@@ -29,6 +29,10 @@ const routes: Routes = [
   {
     path: 'stay-in-touch-admin',
     loadChildren: () => import('./stay-in-touch-admin/stay-in-touch-admin.module').then(m => m.StayInTouchAdminPageModule)
+  },
+  {
+    path: 'management',
+    loadChildren: () => import('./management/management.module').then(m => m.ManagementPageModule)
   }
 
 

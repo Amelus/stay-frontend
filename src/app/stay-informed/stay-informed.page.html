@@ -1,17 +1,16 @@
 <ion-header>
   <ion-toolbar>
-    <div style="position: absolute; float: left; padding: 0px; margin: 10px 0px; text-align: center; width: auto;">
-      <ion-title style="width: 100%">Stay informed</ion-title>
-    </div>
+
     <ion-back-button slot="start">
       <ion-icon name="arrow-back-outline"></ion-icon>
     </ion-back-button>
 
-    <div style="float: right; margin-right: 10px;">
-      <ion-button *ngIf="isAdmin" (click)="toggleEdit($event)" id="editButton">
-        <ion-icon name="create"></ion-icon>
-      </ion-button>
-    </div>
+    <ion-title>Stay informed</ion-title>
+
+    <ion-button (click)="toggleEdit($event)" *ngIf="isAdmin" slot="end">
+      <ion-icon name="create"></ion-icon>
+    </ion-button>
+
   </ion-toolbar>
 </ion-header>
 
@@ -19,8 +18,8 @@
   <div class="content-outer">
     <div class="content-inner">
 
-      <div *ngFor="let card of cards;">
-        <ion-card>
+      <div *ngFor="let card of cards;" style="overflow: visible;">
+        <ion-card style="overflow: visible; margin-bottom: 35px;">
           <img src="{{card.srcpath}}"/>
           <ion-card-header>
             <ion-card-subtitle>{{card.subtitle}}</ion-card-subtitle>
@@ -28,12 +27,15 @@
           </ion-card-header>
           <ion-card-content>{{card.content}}</ion-card-content>
 
-          <div class="overlay-card-outer" [hidden]="!isEdit" (click)="onEditCard(card)">
-            <div class="overlay-card-inner" style="">
-              <button class="overlay-card-button">Bearbeiten</button>
-            </div>
+          <div [hidden]="!isEdit" class="overlay-card-outer">
+            <button (click)="onEditCard(card)" class="overlay-card-button">
+              <p class="p-class">Bearbeiten</p>
+            </button>
           </div>
-          <button class="delete-button" [hidden]="!isEdit" (click)="onDeleteCard(card)">Löschen</button>
+          <ion-button (click)="onDeleteCard(card)" [hidden]="!isEdit" class="delete-button" color="danger"
+                      size="default">
+            <ion-icon class="delete-button-icon" name="trash"></ion-icon>
+          </ion-button>
         </ion-card>
       </div>
 
@@ -41,7 +43,7 @@
   </div>
 
   <ion-fab *ngIf="isAdmin" [hidden]="!isEdit" vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button style="margin-right: 10px;" (click)="onAddCard()">
+    <ion-fab-button (click)="onCreateCard()" style="margin-right: 10px;">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

@@ -17,6 +17,7 @@ import {UserVm} from './UserVm';
 import {API_BASE_URL, blobToText, throwException} from '../api';
 import * as dayjs from 'dayjs'
 import {UserVmRole} from "./UserVmRole";
+import * as _ from "lodash";
 
 @Injectable({
   providedIn: 'root'
@@ -121,6 +122,12 @@ export class UserClient {
       }));
     }
     return _observableOf<UserVm>(null as any);
+  }
+
+  public isAdmin(): boolean {
+    let userVm: UserVm = this.getSessionUser();
+
+    return _.includes(['admin1'], userVm.username);
   }
 
   register(registerVm: RegisterVm): Observable<UserVm> {
@@ -407,11 +414,16 @@ export class UserClient {
       sessionUser.activated = true;
       localStorage.removeItem('user');
       localStorage.setItem('user', JSON.stringify(sessionUser));
-      return _observableOf("SUCCESS")
+      return _observableOf("SUCCESS");
     }
 
     let err: ApiException = new ApiException({error: 'User not logged in'});
     return _observableThrow(err);
+  }
+
+  // FIXME: only for testing only!
+  protected testGetAll(): UserVm[] {
+    return []; // TODO: take the funcionalities from ManagementClient and move it to here!
   }
 
   protected processGetall(response: HttpResponseBase): Observable<UserVm[]> {

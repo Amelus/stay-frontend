@@ -6,6 +6,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {CardsEditComponent} from "./cards/cards-edit/cards-edit.component";
 import {CardsCreateComponent} from "./cards/cards-create/cards-create.component";
+import {ManagementEditComponent} from "./management/management-edit/management-edit.component";
+import {ManagementCreateComponent} from "./management/management-create/management-create.component";
 import {AppointmentSelectionComponent} from "./appointment/appointment-selection/appointment-selection.component";
 import {DatePickerModule} from "ionic4-date-picker";
 import {MeetingCreationComponent} from "./meeting/meeting-creation/meeting-creation.component";
@@ -23,6 +25,8 @@ import {MeetingCreationComponent} from "./meeting/meeting-creation/meeting-creat
     ActivationComponent,
     CardsEditComponent,
     CardsCreateComponent,
+    ManagementEditComponent,
+    ManagementCreateComponent,
     AppointmentSelectionComponent,
     MeetingCreationComponent
   ],
@@ -30,6 +34,8 @@ import {MeetingCreationComponent} from "./meeting/meeting-creation/meeting-creat
     ActivationComponent,
     CardsEditComponent,
     CardsCreateComponent,
+    ManagementEditComponent,
+    ManagementCreateComponent,
     AppointmentSelectionComponent,
     MeetingCreationComponent
   ],
@@ -37,6 +43,8 @@ import {MeetingCreationComponent} from "./meeting/meeting-creation/meeting-creat
     ActivationComponent,
     CardsEditComponent,
     CardsCreateComponent,
+    ManagementEditComponent,
+    ManagementCreateComponent,
     AppointmentSelectionComponent,
     MeetingCreationComponent
   ]
