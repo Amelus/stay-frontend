@@ -13,6 +13,7 @@ import {API_BASE_URL} from "./api/api";
 import {AuthInterceptor} from "./auth/auth.interceptor";
 import {ActivationGuard} from "./auth/activation.guard";
 import {ReverseActivationGuard} from "./auth/reverse-activation.guard";
+import {AdminGuard} from "./auth/admin.guard";
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,13 +30,15 @@ import {ReverseActivationGuard} from "./auth/reverse-activation.guard";
     AuthGuard,
     ActivationGuard,
     ReverseActivationGuard,
+    AdminGuard,
     {provide: API_BASE_URL, useFactory: baseUrl},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+}
 
 export function baseUrl(): string {
   return 'http://localhost:3000' + '/api';

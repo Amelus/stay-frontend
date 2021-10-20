@@ -1,17 +1,7 @@
 import * as dayjs from "dayjs";
-import {IAppointmentParams} from "./interface/IAppointmentParams";
+import {IMeetingParams} from "./interface/IMeetingParams";
 
-export class AppointmentParams implements IAppointmentParams {
-
-  constructor(data?: IAppointmentParams) {
-    if (data) {
-      for (const property in data) {
-        if (data.hasOwnProperty(property)) {
-          (this as any)[property] = (data as any)[property];
-        }
-      }
-    }
-  }
+export class MeetingParams implements IMeetingParams {
 
   title: string;
   content?: string | null;
@@ -24,10 +14,20 @@ export class AppointmentParams implements IAppointmentParams {
   endTime?: string | null;
   backgroundColor?: string | null;
 
+  constructor(data?: IMeetingParams) {
+    if (data) {
+      for (const property in data) {
+        if (data.hasOwnProperty(property)) {
+          (this as any)[property] = (data as any)[property];
+        }
+      }
+    }
+  }
+
   /*
-      static fromJSON(data: any): AppointmentParams {
+      static fromJSON(data: any): MeetingParams {
           data = typeof data === 'object' ? data : {};
-          const result = new AppointmentParams();
+          const result = new MeetingParams();
           result.init(data);
           return result;
       }
@@ -86,7 +86,7 @@ export class AppointmentParams implements IAppointmentParams {
 
         if (this.allDay !== undefined) {
           // Mega hack
-          dateComponent = dateComponent + 'T' +  timeComponent + '.211+01:00';
+          dateComponent = dateComponent + 'T' + timeComponent + '.211+01:00';
           dateEndComponent = dateEndComponent + 'T' + timeEndComponent + '.211+01:00';
         }
 

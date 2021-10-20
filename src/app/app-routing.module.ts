@@ -27,9 +27,10 @@ const routes: Routes = [
     loadChildren: () => import('./stay-informed/stay-informed.module').then(m => m.StayInformedPageModule)
   },
   {
-    path: 'appointment-selection',
-    loadChildren: () => import('./appointment/appointment-selection/appointment-selection.module').then(m => m.AppointmentSelectionPageModule)
+    path: 'stay-in-touch-admin',
+    loadChildren: () => import('./stay-in-touch-admin/stay-in-touch-admin.module').then(m => m.StayInTouchAdminPageModule)
   }
+
 
 ];
 @NgModule({

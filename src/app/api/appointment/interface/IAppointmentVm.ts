@@ -1,19 +1,11 @@
-export interface IAppointmentVm {
-  createdAt?: Date | null;
-  updatedAt?: Date | null;
-  id?: string | null;
-  extendedProps: {
-    creator: string,
-    content?: string | null,
-    global: boolean,
-  };
-  title: string;
-  start?: Date | null;
-  end?: Date | null;
-  allDay: boolean;
-  daysOfWeek?: number[] | null;
-  startTime?: string | null;
-  endTime?: string | null;
-  startRecur?: Date | null;
-  endRecur?: Date | null;
+import {AppointmentType} from "../AppointmentType";
+import {UserVm} from "../../user/UserVm";
+import {IBaseVm} from "../../shared/IBaseVm";
+
+export interface IAppointmentVm extends IBaseVm {
+  type: AppointmentType;
+  date: Date;
+  available?: boolean | true;
+  participants?: UserVm[] | null;
+  information?: string | null;
 }

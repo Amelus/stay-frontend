@@ -1,12 +1,14 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {AppointmentSelectionPage} from './appointment-selection.page';
+import {StayInTouchAdminPage} from './stay-in-touch-admin.page';
+import {AdminGuard} from "../auth/admin.guard";
 
 const routes: Routes = [
   {
     path: '',
-    component: AppointmentSelectionPage
+    component: StayInTouchAdminPage,
+    canActivate: [AdminGuard]
   }
 ];
 
@@ -14,5 +16,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AppointmentSelectionPageRoutingModule {
+export class StayInTouchAdminPageRoutingModule {
 }

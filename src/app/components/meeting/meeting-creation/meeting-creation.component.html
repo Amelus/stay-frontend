@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Neuer Termin</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<form [formGroup]="form">
+  <ion-list>
+    <div>
+      <ion-item>
+        <ion-input formControlName="title" placeholder="Terminname" required="true"></ion-input>
+        <ng-container *ngIf="form.get('title').dirty && form.get('title').errors">
+          <div class="error">
+            <ng-container *ngIf="form.get('title').hasError('required')">
+              Der Terminname darf nicht leer sein
+            </ng-container>
+          </div>
+        </ng-container>
+      </ion-item>
+    </div>
+    <div>
+      <ion-item>
+        <ion-label>Ganztägig</ion-label>
+        <ion-toggle (click)="toggleAllDay()" formControlName="allDay" name="allDay" slot="end"></ion-toggle>
+      </ion-item>
+    </div>
+    <div>
+      <div class="ion-align-self-center ion-justify-content-center">
+        <ion-chip class="ion-margin-start">
+          <ion-datetime [max]="maxDate" [min]="minDate" [monthShortNames]="monthNames"
+                        displayFormat="DD MMM YY"
+                        formControlName="startDate"
+                        placeholder="Von Datum">
+          </ion-datetime>
+        </ion-chip>
+        <ion-icon name="arrow-dropright"></ion-icon>
+        <ion-chip class="ion-margin-end">
+          <ion-datetime [max]="maxDate" [min]="minDate" [monthShortNames]="monthNames"
+                        displayFormat="DD MMM YY"
+                        formControlName="endDate"
+                        placeholder="Bis Datum">
+          </ion-datetime>
+        </ion-chip>
+      </div>
+      <div>
+        <ion-chip class="ion-margin-start">
+          <ion-datetime [minuteValues]="minuteValues" displayFormat="HH:mm" formControlName="startTime"
+                        placeholder="Von Uhrzeit">
+          </ion-datetime>
+        </ion-chip>
+        <ion-icon name="arrow-dropright"></ion-icon>
+        <ion-chip class="ion-margin-end">
+          <ion-datetime [minuteValues]="minuteValues" displayFormat="HH:mm" formControlName="endTime"
+                        placeholder="Bis Uhrzeit">
+          </ion-datetime>
+        </ion-chip>
+      </div>
+    </div>
+    <ion-item>
+      <ion-label>Wiederholen</ion-label>
+      <ion-checkbox (click)="toggleRecurring()"></ion-checkbox>
+    </ion-item>
+    <div [hidden]="!recurringMeeting">
+      <ion-item>
+        <ion-label>Wochentage</ion-label>
+        <ion-select cancelText="Abbruch" formControlName="daysOfWeek" multiple="true" okText="Bestätigen">
+          <ion-select-option value="1">Montag</ion-select-option>
+          <ion-select-option value="2">Dienstag</ion-select-option>
+          <ion-select-option value="3">Mittwoch</ion-select-option>
+          <ion-select-option value="4">Donnerstag</ion-select-option>
+          <ion-select-option value="5">Freitag</ion-select-option>
+          <ion-select-option value="6">Samstag</ion-select-option>
+          <ion-select-option value="0">Sonntag</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-datetime [max]="maxDate" [min]="minDate" [monthShortNames]="monthNames"
+                      displayFormat="DD MMM YY"
+                      formControlName="recurringEndDate"
+                      placeholder="Enddatum">
+        </ion-datetime>
+      </ion-item>
+    </div>
+    <ion-item>
+      <ion-input formControlName="description" placeholder="Beschreibung"></ion-input>
+    </ion-item>
+  </ion-list>
+</form>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button (click)="dismiss()" fill="clear" slot="end">
+      Abbruch
+    </ion-button>
+    <ion-button (click)="onSubmit()" fill="clear" slot="end">
+      Speichern
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

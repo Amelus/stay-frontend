@@ -25,6 +25,14 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+/* CSS for Calendar*/
+@import "~@fullcalendar/bootstrap/main.css";
+@import '~@fullcalendar/daygrid/main.css';
+@import '~@fullcalendar/timegrid/main.css';
+@import '~@fullcalendar/list/main.css';
+@import '~@fortawesome/fontawesome-free/css/all.css';
+@import "~bootstrap/scss/bootstrap";
+
 .content-outer {
   padding: 50px;
   overflow: auto;
@@ -77,6 +85,22 @@
       position: relative;
       contain: content;
       max-height: 300px;
+
+      .modal-content {
+        overflow: auto;
+      }
+    }
+  }
+}
+
+.meeting-component {
+  --height: auto;
+
+  .modal-wrapper {
+    .ion-page {
+      position: relative;
+      contain: content;
+      max-height: 500px;
 
       .modal-content {
         overflow: auto;

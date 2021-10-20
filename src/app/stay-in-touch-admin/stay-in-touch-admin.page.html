@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Stay in Touch (Admin)</ion-title>
+    <ion-back-button slot="start">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-back-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <full-calendar #calendarComponent [options]="calendarOptions" class="content-outer"></full-calendar>
+  <ion-fab (click)="addMeeting()" horizontal="end" slot="fixed" vertical="bottom">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

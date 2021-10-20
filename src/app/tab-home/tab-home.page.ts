@@ -15,6 +15,7 @@ export class TabHomePage implements OnInit {
 
   currentUser: UserVm;
   needsUpgrade: boolean = true;
+  stayInTouchLink: string[];
 
   constructor(public modalController: ModalController,
               private userClient: UserClient) {
@@ -40,6 +41,11 @@ export class TabHomePage implements OnInit {
     this.currentUser = this.userClient.getSessionUser();
     if (this.currentUser !== null) {
       this.needsUpgrade = this.currentUser.role === UserVmRole.User && this.currentUser.activated !== true;
+      if (this.currentUser.role === UserVmRole.Admin) {
+        this.stayInTouchLink = ['/stay-in-touch-admin'];
+      } else {
+        this.stayInTouchLink = ['/stay-in-touch'];
+      }
     }
   }
 }

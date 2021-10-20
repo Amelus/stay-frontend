@@ -1,18 +1,20 @@
 import {Component, OnInit} from '@angular/core';
 import {ModalController, NavParams} from "@ionic/angular";
+import {AppointmentType} from "../../../api/appointment/AppointmentType";
 
 @Component({
   selector: 'app-appointment-selection',
-  templateUrl: './appointment-selection.page.html',
-  styleUrls: ['./appointment-selection.page.scss'],
+  templateUrl: './appointment-selection.component.html',
+  styleUrls: ['./appointment-selection.component.scss'],
 })
-export class AppointmentSelectionPage implements OnInit {
+export class AppointmentSelectionComponent implements OnInit {
 
   validDates: Date[];
-  type: string;
+  type: AppointmentType;
 
   constructor(private navParams: NavParams,
-              public modalController: ModalController) { }
+              public modalController: ModalController) {
+  }
 
   ngOnInit() {
     this.validDates = this.navParams.get('validDates');
