@@ -1,16 +1,16 @@
-<ion-content [fullscreen]="true">
+<ion-content>
 
   <div class="content-outer">
     <div class="content-inner">
-      <div id='main-box'>
-        <a [routerLink]="stayInTouchLink" class="button-element" id="element-1">
-          <p class="p-center-h-v">stay in touch</p>
-        </a>
-        <a [routerLink]="['/stay-informed']" class="button-element" id="element-2">
-          <p class="p-center-h-v">stay informed</p>
-        </a>
+      <div id='main-div'>
+        <div [routerLink]="stayInTouchLink" class="button-props" id="button1">
+          <p class="p-center-h-v no-select">stay in touch</p>
+        </div>
+        <div [routerLink]="['/stay-informed']" class="button-props" id="button2">
+          <p class="p-center-h-v no-select">stay informed</p>
+        </div>
       </div>
-      <div *ngIf="needsUpgrade" class="upgrade-button">
+      <div *ngIf="needsUpgrade" class="upgrade-button" id="button5">
         <ion-button (click)="showActivation()" slot="secondary">App freischalten</ion-button>
       </div>
     </div>

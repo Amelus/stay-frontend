@@ -22,6 +22,7 @@ export class TabHomePage implements OnInit {
   }
 
   ngOnInit(): void {
+    this.stayInTouchLink = ['/stay-in-touch'];
     this.initUser();
   }
 
@@ -43,8 +44,6 @@ export class TabHomePage implements OnInit {
       this.needsUpgrade = this.currentUser.role === UserVmRole.User && this.currentUser.activated !== true;
       if (this.currentUser.role === UserVmRole.Admin) {
         this.stayInTouchLink = ['/stay-in-touch-admin'];
-      } else {
-        this.stayInTouchLink = ['/stay-in-touch'];
       }
     }
   }
